@@ -8,7 +8,7 @@ export default async function SpotsList() {
     <>
       <h1>Spots List</h1>
       {spots.map((spot) => (
-        <p>{spot.name}</p>
+        <p key={spot._id}>{spot.name}</p>
       ))}
     </>
   );
