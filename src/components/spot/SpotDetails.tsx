@@ -35,7 +35,7 @@ export default function SpotDetails({ spot }: SpotDetails) {
       </p>
       <p className='mb-4'>
         <span className='font-bold'>Date Added:</span>{' '}
-        {new Date(spot.createdAt).toLocaleString()}
+        {new Date(spot.createdAt).toLocaleDateString('en-US')}
       </p>
     </>
   );
