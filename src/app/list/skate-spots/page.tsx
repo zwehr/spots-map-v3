@@ -1,3 +1,4 @@
+import TableTags from '@/components/tags/TableTags';
 import getAllSpots from '@/lib/fetch/getAllSpots';
 
 export default async function SpotsList() {
@@ -7,17 +8,13 @@ export default async function SpotsList() {
   return (
     <>
       <h1>Spots List</h1>
-      <table>
+      <table className='max-w-6xl mx-auto'>
         <thead>
           <tr>
             <th>Name</th>
             <th>Description</th>
-            <th>Latitude</th>
-            <th>Longitude</th>
             <th>Type</th>
-            <th>Status</th>
             <th>Tags</th>
-            <th>YouTube Links</th>
             <th>Date Added</th>
           </tr>
         </thead>
@@ -26,23 +23,9 @@ export default async function SpotsList() {
             <tr key={spot._id}>
               <td>{spot.name}</td>
               <td>{spot.description}</td>
-              <td>{spot.lat.toFixed(3)}</td>
-              <td>{spot.lng.toFixed(3)}</td>
-              <td>{spot.type}</td>
-              <td>{spot.status}</td>
-              <td>{spot.tags}</td>
+              <td>{spot.type[0].toUpperCase() + spot.type.slice(1)}</td>
               <td>
-                {spot.youtubeLinks.map((link, index) => (
-                  <>
-                    <a
-                      href={link}
-                      target='_blank'
-                      className='underline text-sky-600 hover:text-sky-800'
-                    >
-                      {index + 1}
-                    </a>{' '}
-                  </>
-                ))}
+                <TableTags tags={spot.tags} />
               </td>
               <td>{new Date(spot.createdAt).toLocaleDateString('en-US')}</td>
             </tr>

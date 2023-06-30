@@ -13,3 +13,15 @@ h2 {
 .link {
   @apply underline text-sky-600 hover:text-sky-800;
 }
+
+thead {
+  @apply border-b-2 border-slate-700;
+}
+
+tr {
+  @apply even:bg-slate-100;
+}
+
+td {
+  @apply p-1;
+}
