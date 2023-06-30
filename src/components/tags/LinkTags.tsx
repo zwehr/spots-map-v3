@@ -4,7 +4,7 @@ type TagProps = {
   tags: Array<string>;
 };
 
-export default function TableTags({ tags }: TagProps) {
+export default function LinkTags({ tags }: TagProps) {
   return (
     <div className='flex flex-wrap'>
       {tags.map((tag, index) => (
