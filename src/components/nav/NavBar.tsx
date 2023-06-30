@@ -9,7 +9,7 @@ export default function NavBar() {
   const [isMobileMenuHidden, setIsMobileMenuHidden] = useState(true);
 
   return (
-    <nav className='w-full bg-gray-100 shadow-lg z-10'>
+    <nav className='w-full bg-slate-100 shadow-lg z-10'>
       <div className='px-1 mx-auto'>
         <div className='flex justify-between'>
           <div className='flex space-x-4'>
@@ -24,25 +24,25 @@ export default function NavBar() {
             <div className='hidden md:flex items-center space-x-1'>
               <Link
                 href='/skate-spot-map'
-                className='py-4 px-3 text-gray-700 hover:text-black'
+                className='py-4 px-3 text-slate-700 hover:text-black'
               >
                 Map
               </Link>
               <Link
                 href='/list'
-                className='py-4 px-3 text-gray-700 hover:text-black'
+                className='py-4 px-3 text-slate-700 hover:text-black'
               >
                 List
               </Link>
               <Link
                 href='/about'
-                className='py-4 px-3 text-gray-700 hover:text-black'
+                className='py-4 px-3 text-slate-700 hover:text-black'
               >
                 About
               </Link>
               <Link
                 href='/add'
-                className='py-4 px-3 text-gray-700 hover:text-black'
+                className='py-4 px-3 text-slate-700 hover:text-black'
               >
                 Add to Database
               </Link>
@@ -52,7 +52,7 @@ export default function NavBar() {
           <div className='hidden md:flex items-center space-x-1 pr-3'>
             <Link
               href='/login'
-              className='py-4 px-3 text-gray-700 hover:text-black'
+              className='py-4 px-3 text-slate-700 hover:text-black'
             >
               Login
             </Link>
@@ -77,34 +77,37 @@ export default function NavBar() {
       <div className={`md:hidden ${isMobileMenuHidden ? 'hidden' : ''}`}>
         <Link
           href='/skate-spot-map'
-          className='block py-2 px-4 text-sm hover:bg-gray-200'
+          className='block py-2 px-4 text-sm hover:bg-slate-200'
         >
           Map
         </Link>
         <Link
           href='/list'
-          className='block py-2 px-4 text-sm hover:bg-gray-200'
+          className='block py-2 px-4 text-sm hover:bg-slate-200'
         >
           List
         </Link>
         <Link
           href='/about'
-          className='block py-2 px-4 text-sm hover:bg-gray-200'
+          className='block py-2 px-4 text-sm hover:bg-slate-200'
         >
           About
         </Link>
-        <Link href='/add' className='block py-2 px-4 text-sm hover:bg-gray-200'>
+        <Link
+          href='/add'
+          className='block py-2 px-4 text-sm hover:bg-slate-200'
+        >
           Add to Database
         </Link>
         <Link
           href='/login'
-          className='block py-2 px-4 text-sm hover:bg-gray-200'
+          className='block py-2 px-4 text-sm hover:bg-slate-200'
         >
           Login
         </Link>
         <Link
           href='/signup'
-          className='block py-2 px-4 text-sm hover:bg-gray-200'
+          className='block py-2 px-4 text-sm hover:bg-slate-200'
         >
           Sign Up
         </Link>
