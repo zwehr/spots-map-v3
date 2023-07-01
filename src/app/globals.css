@@ -2,8 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body {
+  @apply m-0 p-0;
+}
+
 h1 {
-  @apply text-4xl text-center mt-12;
+  @apply text-4xl text-center pt-28;
 }
 
 h2 {
