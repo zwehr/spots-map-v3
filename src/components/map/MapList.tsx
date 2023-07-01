@@ -8,7 +8,7 @@ export default function MapList({ spots }: MapListProps) {
   return (
     <div className='h-full overflow-y-scroll'>
       <h2 className='mt-16'>Current Spots</h2>
-      {spots && spots.map((spot) => <MapListItem spot={spot} />)}
+      {spots && spots.map((spot) => <MapListItem spot={spot} key={spot._id} />)}
     </div>
   );
 }

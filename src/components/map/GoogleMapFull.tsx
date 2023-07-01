@@ -28,6 +28,7 @@ export default function GoogleMapFull({ spots }: GoogleMapProps) {
             <Marker
               position={{ lat: spot.lat, lng: spot.lng }}
               onClick={() => handleMarkerClick(spot.name)}
+              key={spot._id}
             />
           ))}
         <></>
