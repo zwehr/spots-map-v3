@@ -60,7 +60,7 @@ export default function VideoCarousel({ youtubeLinks }: VideoProps) {
         <p>{`Video ${youtubeLinkIndex + 1}/${youtubeLinks.length}`}</p>
         <p>
           Spot Timestamp: {currTimeStampMinute}:
-          {/* If timestamp seconds is less than ten, we need to manually add a 0 (e.g. 5:02) */}
+          {/* If timestamp seconds is less than ten, we need to manually add a 0 (e.g. 5:2 -> 5:02) */}
           {currTimeStampSeconds < 10 && '0'}
           {currTimeStampSeconds}
         </p>
