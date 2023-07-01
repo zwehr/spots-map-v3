@@ -18,7 +18,10 @@ export default async function SpotsListByTag({
       {spots && spots.length > 0 ? (
         <>
           <h2>
-            {spots?.length} spots found matching tag: {decodeURI(params.tag)}
+            {spots?.length} spots found matching tag:{' '}
+            <span className='underline decoration-emerald-400'>
+              {decodeURI(params.tag)}
+            </span>
           </h2>
           <table className='max-w-6xl mx-auto mt-6'>
             <thead>
@@ -39,7 +42,10 @@ export default async function SpotsListByTag({
                     <td>{spot.description}</td>
                     <td>{spot.type[0].toUpperCase() + spot.type.slice(1)}</td>
                     <td>
-                      <LinkTags tags={spot.tags} />
+                      <LinkTags
+                        tags={spot.tags}
+                        selectedTag={decodeURI(params.tag)}
+                      />
                     </td>
                     <td>
                       {new Date(spot.createdAt).toLocaleDateString('en-US')}
