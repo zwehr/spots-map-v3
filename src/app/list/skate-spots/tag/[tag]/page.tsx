@@ -15,7 +15,9 @@ export default async function SpotsListByTag({
   return (
     <>
       <h1>Spots List</h1>
-      <h2>Tag: {decodeURI(params.tag)}</h2>
+      <h2>
+        {spots?.length} spots found matching tag: {decodeURI(params.tag)}
+      </h2>
       <table className='max-w-6xl mx-auto mt-6'>
         <thead>
           <tr>
