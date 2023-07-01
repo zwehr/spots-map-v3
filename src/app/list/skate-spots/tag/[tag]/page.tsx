@@ -1,6 +1,7 @@
 import LinkTags from '@/components/tags/LinkTags';
 import getSpotsByTag from '@/lib/fetch/getSpotsByTag';
 import Link from 'next/link';
+import { RiCloseCircleFill } from 'react-icons/ri';
 
 export default async function SpotsListByTag({
   params,
@@ -23,6 +24,11 @@ export default async function SpotsListByTag({
             <span className='underline decoration-emerald-400'>
               {decodeURI(params.tag)}
             </span>
+            <Link href='/list/skate-spots'>
+              <button className='align-middle ml-1' title='Clear tag'>
+                <RiCloseCircleFill className='text-rose-500 hover:text-rose-600' />
+              </button>
+            </Link>
           </h2>
           <table className='max-w-6xl mx-auto mt-6'>
             <thead>
