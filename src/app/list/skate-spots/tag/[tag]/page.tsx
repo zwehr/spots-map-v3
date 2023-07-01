@@ -16,7 +16,7 @@ export default async function SpotsListByTag({
     <>
       <h1>Spots List</h1>
       <h2>Tag: {decodeURI(params.tag)}</h2>
-      <table className='max-w-6xl mx-auto'>
+      <table className='max-w-6xl mx-auto mt-6'>
         <thead>
           <tr>
             <th>Name</th>

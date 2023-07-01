@@ -9,7 +9,7 @@ export default async function SpotsList() {
   return (
     <>
       <h1>Spots List</h1>
-      <table className='max-w-6xl mx-auto'>
+      <table className='max-w-6xl mt-6 mx-auto'>
         <thead>
           <tr>
             <th>Name</th>
