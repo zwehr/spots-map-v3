@@ -33,7 +33,7 @@ export default async function SpotsList() {
                 <td>{new Date(spot.createdAt).toLocaleDateString('en-US')}</td>
                 <td>
                   <Link
-                    href={`../spot/${spot._id}`}
+                    href={`/spot/${spot._id}`}
                     className='link font-semibold'
                   >
                     More Info
