@@ -37,14 +37,16 @@ export default function VideoCarousel({ youtubeLinks }: VideoProps) {
 
   return (
     <div className='flex my-5 mx-auto'>
-      <div>
-        <button
-          className='mt-36 p-1 text-4xl bg-slate-300 rounded-full shadow-xl hover:bg-slate-400'
-          onClick={handlePreviousVideoClick}
-        >
-          <GrPrevious />
-        </button>
-      </div>
+      {youtubeLinks.length > 1 && (
+        <div>
+          <button
+            className='mt-36 p-1 text-4xl rounded-full shadow-lg bg-slate-100 hover:bg-slate-200'
+            onClick={handlePreviousVideoClick}
+          >
+            <GrPrevious />
+          </button>
+        </div>
+      )}
       <div className='w-[550px] mx-auto text-center'>
         <iframe
           /* Default width and height are 560 and 315 respectively. */
@@ -64,14 +66,16 @@ export default function VideoCarousel({ youtubeLinks }: VideoProps) {
         </p>
         <p></p>
       </div>
-      <div>
-        <button
-          className='mt-36 p-1 text-4xl bg-slate-300 rounded-full shadow-xl hover:bg-slate-400'
-          onClick={handleNextVideoClick}
-        >
-          <GrNext />
-        </button>
-      </div>
+      {youtubeLinks.length > 1 && (
+        <div>
+          <button
+            className='mt-36 p-1 text-4xl rounded-full shadow-lg bg-slate-100 hover:bg-slate-200'
+            onClick={handleNextVideoClick}
+          >
+            <GrNext />
+          </button>
+        </div>
+      )}
     </div>
   );
 }
