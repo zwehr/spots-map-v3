@@ -18,7 +18,8 @@ export default async function SpotsListByTag({
       {spots && spots.length > 0 ? (
         <>
           <h2>
-            {spots?.length} spots found matching tag:{' '}
+            {spots?.length} {spots.length > 1 ? 'spots' : 'spot'} found matching
+            tag:{' '}
             <span className='underline decoration-emerald-400'>
               {decodeURI(params.tag)}
             </span>
