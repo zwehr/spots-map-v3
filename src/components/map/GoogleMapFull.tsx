@@ -1,17 +1,23 @@
 'use client';
 
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import { Dispatch, SetStateAction } from 'react';
 
 type GoogleMapProps = {
   spots: Spot[] | undefined;
+  setSelectedSpot: Dispatch<SetStateAction<string>>;
 };
 
-export default function GoogleMapFull({ spots }: GoogleMapProps) {
+export default function GoogleMapFull({
+  spots,
+  setSelectedSpot,
+}: GoogleMapProps) {
   const handleMarkerClick = (spotId: string) => {
     const matchingElement = document.getElementById(spotId);
     if (matchingElement) {
       matchingElement.scrollIntoView({ behavior: 'smooth' });
     }
+    setSelectedSpot(spotId);
   };
 
   return (

@@ -2,11 +2,17 @@ import Link from 'next/link';
 
 type MapListItemProps = {
   spot: Spot;
+  selectedSpot: string;
 };
 
-export default function MapListItem({ spot }: MapListItemProps) {
+export default function MapListItem({ spot, selectedSpot }: MapListItemProps) {
   return (
-    <div className='bg-slate-100 m-3 p-3 rounded-md shadow-md' id={spot._id}>
+    <div
+      className={`m-3 p-3 rounded-md shadow-md ${
+        selectedSpot === spot._id ? 'bg-amber-300' : 'bg-slate-100'
+      }`}
+      id={spot._id}
+    >
       <h3 className='font-semibold'>{spot.name}</h3>
       <div className='iframe-container'>
         <iframe
