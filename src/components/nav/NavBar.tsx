@@ -9,7 +9,7 @@ export default function NavBar() {
   const [isMobileMenuHidden, setIsMobileMenuHidden] = useState(true);
 
   return (
-    <nav className='w-full bg-slate-100 shadow-lg z-10 fixed'>
+    <nav className='w-full bg-slate-100 shadow-lg z-10'>
       <div className='px-1 mx-auto'>
         <div className='flex justify-between'>
           <div className='flex space-x-4'>

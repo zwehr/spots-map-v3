@@ -6,7 +6,7 @@ type MapListItemProps = {
 
 export default function MapListItem({ spot }: MapListItemProps) {
   return (
-    <div className='bg-slate-100 m-3 p-3 rounded-md shadow-md'>
+    <div className='bg-slate-100 m-3 p-3 rounded-md shadow-md' id={spot._id}>
       <h3 className='font-semibold'>{spot.name}</h3>
       <div className='iframe-container'>
         <iframe

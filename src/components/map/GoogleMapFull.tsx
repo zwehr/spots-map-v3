@@ -7,8 +7,11 @@ type GoogleMapProps = {
 };
 
 export default function GoogleMapFull({ spots }: GoogleMapProps) {
-  const handleMarkerClick = (spotName: string) => {
-    alert(spotName);
+  const handleMarkerClick = (spotId: string) => {
+    const matchingElement = document.getElementById(spotId);
+    if (matchingElement) {
+      matchingElement.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -27,7 +30,7 @@ export default function GoogleMapFull({ spots }: GoogleMapProps) {
           spots.map((spot) => (
             <Marker
               position={{ lat: spot.lat, lng: spot.lng }}
-              onClick={() => handleMarkerClick(spot.name)}
+              onClick={() => handleMarkerClick(spot._id)}
               key={spot._id}
             />
           ))}

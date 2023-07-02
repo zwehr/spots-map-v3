@@ -5,9 +5,12 @@ type MapListProps = {
 };
 
 export default function MapList({ spots }: MapListProps) {
+  const heightMinusNavStyle = {
+    height: 'calc(100vh - 60px)',
+  };
+
   return (
-    <div className='h-full overflow-y-scroll'>
-      <h2 className='mt-16'>Current Spots</h2>
+    <div style={heightMinusNavStyle} className='overflow-y-scroll'>
       {spots && spots.map((spot) => <MapListItem spot={spot} key={spot._id} />)}
     </div>
   );
