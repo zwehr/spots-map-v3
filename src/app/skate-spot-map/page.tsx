@@ -7,6 +7,7 @@ export default async function Map() {
 
   return (
     <div>
+      <h1 className='hidden'>Skate Spots Map</h1>
       <MapAndListContainer spots={spots} />
     </div>
   );
