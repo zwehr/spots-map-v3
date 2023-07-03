@@ -21,7 +21,7 @@ export default function GoogleMapFull({
   };
 
   return (
-    <GoogleMap zoom={10} center={center} mapContainerClassName='w-full h-full'>
+    <GoogleMap zoom={3} center={center} mapContainerClassName='w-full h-full'>
       {spots &&
         spots.map((spot) => (
           <Marker

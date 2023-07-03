@@ -10,7 +10,7 @@ type GoogleMapContainerProps = {
 };
 
 const options = {};
-const center = { lat: 44, lng: -80 };
+const center = { lat: 20, lng: -50 };
 
 export default function GoogleMapContainer({
   spots,
