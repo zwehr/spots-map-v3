@@ -1,5 +1,6 @@
 'use client';
 
+import youtubeToTimestamp from '@/lib/misc-helper/youtubeToTimestamp';
 import { useState } from 'react';
 import { GrPrevious, GrNext } from 'react-icons/gr';
 
@@ -9,15 +10,6 @@ type VideoProps = {
 
 export default function VideoCarousel({ youtubeLinks }: VideoProps) {
   const [youtubeLinkIndex, setYoutubeLinkIndex] = useState(0);
-
-  // Takes total seconds from end of YouTube link (after '='), converts to number, and takes floor of division by 60 (seconds)
-  let currTimeStampMinute = Math.floor(
-    parseInt(youtubeLinks[youtubeLinkIndex].split('=')[1]) / 60
-  );
-
-  // Similar to above, but % operator gives seconds
-  let currTimeStampSeconds =
-    parseInt(youtubeLinks[youtubeLinkIndex].split('=')[1]) % 60;
 
   const handlePreviousVideoClick = () => {
     if (youtubeLinkIndex === 0) {
@@ -59,10 +51,7 @@ export default function VideoCarousel({ youtubeLinks }: VideoProps) {
         ></iframe>
         <p>{`Video ${youtubeLinkIndex + 1}/${youtubeLinks.length}`}</p>
         <p>
-          Spot Timestamp: {currTimeStampMinute}:
-          {/* If timestamp seconds is less than ten, we need to manually add a 0 (e.g. 5:2 -> 5:02) */}
-          {currTimeStampSeconds < 10 && '0'}
-          {currTimeStampSeconds}
+          Spot Timestamp: {youtubeToTimestamp(youtubeLinks[youtubeLinkIndex])}
         </p>
         <p></p>
       </div>

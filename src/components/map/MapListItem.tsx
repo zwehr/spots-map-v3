@@ -1,4 +1,6 @@
+import youtubeToTimestamp from '@/lib/misc-helper/youtubeToTimestamp';
 import Link from 'next/link';
+import { FiCornerRightDown } from 'react-icons/fi';
 
 type MapListItemProps = {
   spot: Spot;
@@ -13,7 +15,11 @@ export default function MapListItem({ spot, selectedSpot }: MapListItemProps) {
       }`}
       id={spot._id}
     >
-      <h3 className='font-semibold'>{spot.name}</h3>
+      <h3 className='font-semibold text-lg'>{spot.name}</h3>
+      <p>
+        {youtubeToTimestamp(spot.youtubeLinks[0])} timestamp{' '}
+        <FiCornerRightDown className='inline align-bottom' />
+      </p>
       <div className='iframe-container'>
         <iframe
           /* Default width and height are 560 and 315 respectively. */
