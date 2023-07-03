@@ -1,7 +1,7 @@
 'use client';
 
 import MapList from '@/components/map/MapList';
-import GoogleMapFull from '@/components/map/GoogleMapFull';
+import GoogleMapContainer from '@/components/map/GoogleMapContainer';
 import { useState } from 'react';
 
 type MapAndListContainerProps = {
@@ -26,7 +26,7 @@ export default function MapAndListContainer({
         <MapList spots={spots} selectedSpot={selectedSpot} />
       </div>
       <div className='lg:w-2/3'>
-        <GoogleMapFull spots={spots} setSelectedSpot={setSelectedSpot} />
+        <GoogleMapContainer spots={spots} setSelectedSpot={setSelectedSpot} />
       </div>
     </div>
   );
