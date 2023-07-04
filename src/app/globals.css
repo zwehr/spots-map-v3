@@ -31,6 +31,16 @@ td {
   @apply p-1;
 }
 
+label {
+  @apply block;
+}
+
+input,
+textarea,
+select {
+  @apply mb-3;
+}
+
 /* 
 Responsive iframe styling below from Ben Marhsall's tutorial:
 https://www.benmarshall.me/responsive-iframes/ 
