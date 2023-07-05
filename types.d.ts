@@ -27,4 +27,6 @@ type NewSpot = {
   tags: Array<string>;
   youtubeLinks: Array<string>;
   images: Array<string>;
+  createdAt: Date;
+  updatedAt: Date;
 };

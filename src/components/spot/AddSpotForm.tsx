@@ -48,6 +48,8 @@ export default function AddSpotForm({ addSpot }: AddSpotFormProps) {
       tags: tags,
       youtubeLinks: [youtubeLink],
       images: [],
+      createdAt: new Date(),
+      updatedAt: new Date(),
     });
     const newSpotId = await newSpotData;
     console.log('umm', newSpotId);
