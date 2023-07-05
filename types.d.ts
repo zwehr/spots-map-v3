@@ -14,3 +14,17 @@ type Spot = {
   updatedAt: Date;
   __v: number;
 };
+
+type NewSpot = {
+  name: string;
+  description: string;
+  city: string;
+  lat: number;
+  lng: number;
+  isPremium: boolean;
+  type: string;
+  status: string;
+  tags: Array<string>;
+  youtubeLinks: Array<string>;
+  images: Array<string>;
+};
