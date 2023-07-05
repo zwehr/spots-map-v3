@@ -1,8 +1,8 @@
 'use client';
 
 import DeletableTags from '@/components/tags/DeletableTags';
-import { InsertOneResult } from 'mongodb';
-import { useState, MouseEvent, FormEvent, ChangeEvent } from 'react';
+import { redirect } from 'next/navigation';
+import { useState, MouseEvent, FormEvent } from 'react';
 
 type AddSpotFormProps = {
   addSpot: (spot: NewSpot) => Promise<string | undefined>;
@@ -52,7 +52,8 @@ export default function AddSpotForm({ addSpot }: AddSpotFormProps) {
       updatedAt: new Date(),
     });
     const newSpotId = await newSpotData;
-    console.log('umm', newSpotId);
+    console.log('new spot ID is: ', newSpotId);
+    redirect(`/spot/id${newSpotId}`);
   };
 
   return (
