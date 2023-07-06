@@ -36,6 +36,7 @@ export default function GoogleMapFull({
     east: 3,
     west: 4,
   });
+  const [mapMoved, setMapMoved] = useState(false);
 
   useEffect(() => {
     if (map) {
@@ -55,6 +56,10 @@ export default function GoogleMapFull({
     setSelectedSpot(spotId);
   };
 
+  const toggleMapMoved = () => {
+    setMapMoved((prev) => !prev);
+  };
+
   return (
     <GoogleMap
       zoom={13}
@@ -67,11 +72,15 @@ export default function GoogleMapFull({
           setCurrentBounds(map.getBounds().toJSON());
         }
       }}
+      onDragEnd={() => setMapMoved(true)}
     >
-      <FindSpotsButton
-        handleFindNewSpots={handleFindNewSpots}
-        currentBounds={currentBounds}
-      />
+      {mapMoved && (
+        <FindSpotsButton
+          handleFindNewSpots={handleFindNewSpots}
+          currentBounds={currentBounds}
+          toggleMapMoved={toggleMapMoved}
+        />
+      )}
       {spots &&
         spots.map((spot) => (
           <Marker
