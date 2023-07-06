@@ -3,6 +3,7 @@
 import DeletableTags from '@/components/tags/DeletableTags';
 import { useState, MouseEvent, FormEvent } from 'react';
 import AddSuccessMessage from '@/components/forms/AddSuccessMessage';
+import { BeatLoader } from 'react-spinners';
 
 type AddSpotFormProps = {
   addNewSpot: (newSpot: NewSpot) => Promise<string | undefined>;
@@ -22,7 +23,8 @@ export default function AddSpotForm({ addNewSpot }: AddSpotFormProps) {
   const [youtubeLink, setYoutubeLink] = useState('');
   const [isPremium, setIsPremium] = useState(false);
   const [newSpotId, setNewSpotId] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [userSubmitted, setUserSubmitted] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
 
   const handleAddTag = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -53,7 +55,8 @@ export default function AddSpotForm({ addNewSpot }: AddSpotFormProps) {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitted(false);
+    setUserSubmitted(true);
+    setSubmitSuccess(false);
     try {
       const newSpotResponse = addNewSpot({
         name: name,
@@ -74,8 +77,9 @@ export default function AddSpotForm({ addNewSpot }: AddSpotFormProps) {
       const newlyInsertedId = newSpotResponseSecond;
       if (typeof newlyInsertedId === 'string') {
         setNewSpotId(newlyInsertedId);
-        setIsSubmitted(true);
+        setSubmitSuccess(true);
         clearFormInputs();
+        setUserSubmitted(false);
       }
     } catch (e) {
       console.log(e);
@@ -83,7 +87,7 @@ export default function AddSpotForm({ addNewSpot }: AddSpotFormProps) {
   };
 
   const closeSuccessMessage = () => {
-    setIsSubmitted(false);
+    setSubmitSuccess(false);
   };
 
   return (
@@ -274,17 +278,15 @@ export default function AddSpotForm({ addNewSpot }: AddSpotFormProps) {
         className='mr-1'
       />
       Check if premium - default is free.
-      <input
-        type='submit'
-        value='Add Spot'
-        className='mx-auto py-2 px-3 bg-green-400 rounded-lg hover:bg-green-500 hover:cursor-pointer shadow-md text-lg block'
-      />
-      {isSubmitted && (
+      {submitSuccess && (
         <AddSuccessMessage
           id={newSpotId}
           handleCloseClick={closeSuccessMessage}
         />
       )}
+      <button className='mx-auto mt-5 mb-2 w-28 h-10 bg-green-400 rounded-lg hover:bg-green-500 hover:cursor-pointer shadow-md text-lg block'>
+        {userSubmitted ? <BeatLoader size={12} /> : 'Add Spot'}
+      </button>
     </form>
   );
 }
