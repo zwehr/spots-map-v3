@@ -158,16 +158,17 @@ export default function AddSpotForm({ addNewSpot }: AddSpotFormProps) {
         id='type-select'
       >
         <option value=''>--Choose a spot type--</option>
-        <option value='handrail'>Handrail</option>
-        <option value='stairs'>Stairs</option>
-        <option value='gap'>Gap</option>
-        <option value='ledge'>Ledge</option>
-        <option value='pad'>Manual Pad</option>
-        <option value='hubba'>Hubba</option>
         <option value='bank'>Bank</option>
-        <option value='street transition'>Street Transition</option>
+        <option value='bump-to-bar'>Bump to Bar</option>
         <option value='curb'>Curb</option>
-        <option value='bump'>Bump to bar, etc.</option>
+        <option value='flat bar'>Flat Bar</option>
+        <option value='gap'>Gap</option>
+        <option value='handrail'>Handrail</option>
+        <option value='hubba'>Hubba</option>
+        <option value='ledge'>Ledge</option>
+        <option value='manny pad'>Manny Pad</option>
+        <option value='stairs'>Stairs</option>
+        <option value='street transition'>Street Transition</option>
         <option value='misc'>Misc</option>
       </select>
       <div className='flex-col'>
