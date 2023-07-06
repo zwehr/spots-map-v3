@@ -10,13 +10,13 @@ type MapListItemProps = {
 export default function MapListItem({ spot, selectedSpot }: MapListItemProps) {
   return (
     <div
-      className={`m-3 p-3 rounded-md shadow-md ${
+      className={`flex flex-col m-3 p-3 rounded-md shadow-md ${
         selectedSpot === spot._id ? 'bg-amber-300' : 'bg-slate-100'
       }`}
       id={spot._id}
     >
-      <h3 className='font-semibold text-lg'>{spot.name}</h3>
-      <p>
+      <h3 className='font-semibold text-xl'>{spot.name}</h3>
+      <p className='mb-1'>
         {youtubeToTimestamp(spot.youtubeLinks[0])} timestamp{' '}
         <FiCornerRightDown className='inline align-bottom' />
       </p>
@@ -31,10 +31,12 @@ export default function MapListItem({ spot, selectedSpot }: MapListItemProps) {
           allowFullScreen
         ></iframe>
       </div>
-      <p>{spot.description}</p>
-      <Link href={`/spot/${spot._id}`} className='link'>
-        View more information
-      </Link>
+      <p className='mt-2'>{spot.description}</p>
+      <div className='mt-2 ml-auto'>
+        <Link href={`/spot/${spot._id}`} className='link'>
+          View more information...
+        </Link>
+      </div>
     </div>
   );
 }
