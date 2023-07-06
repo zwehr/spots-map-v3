@@ -238,7 +238,7 @@ export default function AddSpotForm({ addNewSpot }: AddSpotFormProps) {
         YOUTUBE LINK:
       </label>
       <input
-        className='w-full'
+        className='w-full mb-0'
         value={youtubeLink}
         onChange={(e) => setYoutubeLink(e.target.value)}
         id='youtube'
@@ -246,6 +246,24 @@ export default function AddSpotForm({ addNewSpot }: AddSpotFormProps) {
         type='text'
         required
       />
+      <p className='mb-3'>
+        (Note: YouTube embed link required. The format must be{' '}
+        <a
+          href='https://www.youtube.com/embed/nufgmoSNq0E?start=85'
+          className='link'
+        >
+          https://www.youtube.com/<span className='font-bold'>embed</span>
+          /nufgmoSNq0E?<span className='font-bold'>start=85</span>
+        </a>{' '}
+        and NOT{' '}
+        <a href='https://youtu.be/nufgmoSNq0E?t=85' className='link'>
+          https://youtu.be/nufgmoSNq0E?
+          <span className='font-bold'>t=85</span>
+        </a>
+        . To get the correct link, make sure to click on 'Embed' after clicking
+        share, then copy the link from the embed code after making sure 'Start
+        at [timestamp]' is selected.)
+      </p>
       <label htmlFor='premium' className='font-bold'>
         FREE/PREMIUM:
       </label>
