@@ -1,5 +1,8 @@
+'use client';
+
 import {
   Dispatch,
+  MouseEventHandler,
   SetStateAction,
   useCallback,
   useEffect,
@@ -12,14 +15,27 @@ type GoogleMapFullProps = {
   spots: Spot[] | undefined;
   setSelectedSpot: Dispatch<SetStateAction<string>>;
   center: { lat: number; lng: number };
+  handleFindNewSpots: (
+    northBoundary: number,
+    southBoundary: number,
+    eastBoundary: number,
+    westBoundary: number
+  ) => void;
 };
 
 export default function GoogleMapFull({
   spots,
   setSelectedSpot,
   center,
+  handleFindNewSpots,
 }: GoogleMapFullProps) {
   const [map, setMap] = useState<any>(null);
+  const [currentBounds, setCurrentBounds] = useState({
+    north: 1,
+    south: 2,
+    east: 3,
+    west: 4,
+  });
 
   useEffect(() => {
     if (map) {
@@ -46,10 +62,16 @@ export default function GoogleMapFull({
       mapContainerClassName='w-full h-full'
       onLoad={onLoad}
       onBoundsChanged={() => {
-        if (map != null) console.log(map.getBounds().toJSON());
+        if (map != null) {
+          console.log('current boundaries: ', map.getBounds().toJSON());
+          setCurrentBounds(map.getBounds().toJSON());
+        }
       }}
     >
-      <FindSpotsButton />
+      <FindSpotsButton
+        handleFindNewSpots={handleFindNewSpots}
+        currentBounds={currentBounds}
+      />
       {spots &&
         spots.map((spot) => (
           <Marker

@@ -9,9 +9,7 @@ export default function MapList({ spots, selectedSpot }: MapListProps) {
   return (
     <div className='h-full overflow-y-scroll'>
       <p className='ml-4 mt-2 text-xl'>
-        {spots && spots.length > 0
-          ? `${spots.length} spots found.`
-          : 'No spots found. Try searching another area'}
+        {spots && spots.length > 0 && `${spots.length} spots found.`}
       </p>
       {spots &&
         spots.map((spot) => (
