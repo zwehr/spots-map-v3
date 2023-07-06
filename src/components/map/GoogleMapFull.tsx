@@ -6,6 +6,7 @@ import {
   useState,
 } from 'react';
 import { GoogleMap, Marker } from '@react-google-maps/api';
+import FindSpotsButton from './FindSpotsButton';
 
 type GoogleMapFullProps = {
   spots: Spot[] | undefined;
@@ -48,6 +49,7 @@ export default function GoogleMapFull({
         if (map != null) console.log(map.getBounds().toJSON());
       }}
     >
+      <FindSpotsButton />
       {spots &&
         spots.map((spot) => (
           <Marker
