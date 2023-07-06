@@ -1,20 +1,26 @@
-import AddSpotForm from '@/components/spot/AddSpotForm';
-import insertSpot from '@/lib/fetch/insertSpot';
-import { InsertOneResult, ObjectId } from 'mongodb';
+import AddSpotForm from '@/components/forms/AddSpotForm';
+import insertGeolocation from '@/lib/fetch/insertGeolocation';
+import { InsertOneResult } from 'mongodb';
 
 export default function AddSpot() {
-  // experimental server action so this function can be sent to client component (AddSpotForm) as props
-  async function addSpot(spot: NewSpot) {
+  async function addNewSpot(newSpot: NewSpot) {
     'use server';
-    const newSpotData: Promise<string | undefined> = insertSpot('spots', spot);
-    const newSpotId = await newSpotData;
-    return newSpotId;
+    try {
+      const newSpotData: Promise<InsertOneResult<Document> | undefined> =
+        insertGeolocation('spots', newSpot);
+      const newSpotDoc = await newSpotData;
+      const newSpotId = newSpotDoc?.insertedId.toString();
+      return newSpotId;
+    } catch (e) {
+      console.error(e);
+    }
   }
+
   return (
     <>
       <h1>Add Spot</h1>
       <div className='bg-slate-100 max-w-xl mx-auto mb-24 p-6 rounded-md shadow-lg'>
-        <AddSpotForm addSpot={addSpot} />
+        <AddSpotForm addNewSpot={addNewSpot} />
       </div>
     </>
   );

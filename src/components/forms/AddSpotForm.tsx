@@ -1,14 +1,14 @@
 'use client';
 
 import DeletableTags from '@/components/tags/DeletableTags';
-import { redirect } from 'next/navigation';
 import { useState, MouseEvent, FormEvent } from 'react';
+import AddSuccessMessage from '@/components/forms/AddSuccessMessage';
 
 type AddSpotFormProps = {
-  addSpot: (spot: NewSpot) => Promise<string | undefined>;
+  addNewSpot: (newSpot: NewSpot) => Promise<string | undefined>;
 };
 
-export default function AddSpotForm({ addSpot }: AddSpotFormProps) {
+export default function AddSpotForm({ addNewSpot }: AddSpotFormProps) {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [city, setCity] = useState('');
@@ -21,6 +21,8 @@ export default function AddSpotForm({ addSpot }: AddSpotFormProps) {
   const [images, setImages] = useState(Array<string>);
   const [youtubeLink, setYoutubeLink] = useState('');
   const [isPremium, setIsPremium] = useState(false);
+  const [newSpotId, setNewSpotId] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleAddTag = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -34,26 +36,54 @@ export default function AddSpotForm({ addSpot }: AddSpotFormProps) {
     setTags(tags.filter((tag) => tag !== tagToDelete));
   };
 
+  const clearFormInputs = () => {
+    setName('');
+    setDescription('');
+    setCity('');
+    setLat('');
+    setLng('');
+    setType('');
+    setStatus('active');
+    setTag('');
+    setTags([]);
+    setImages([]);
+    setYoutubeLink('');
+    setIsPremium(false);
+  };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const newSpotData = addSpot({
-      name: name,
-      description: description,
-      city: city,
-      lat: Number(lat),
-      lng: Number(lng),
-      isPremium: isPremium,
-      type: type,
-      status: status,
-      tags: tags,
-      youtubeLinks: [youtubeLink],
-      images: [],
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    });
-    const newSpotId = await newSpotData;
-    console.log('new spot ID is: ', newSpotId);
-    redirect(`/spot/id${newSpotId}`);
+    setIsSubmitted(false);
+    try {
+      const newSpotResponse = addNewSpot({
+        name: name,
+        description: description,
+        city: city,
+        lat: Number(lat),
+        lng: Number(lng),
+        isPremium: isPremium,
+        type: type,
+        status: status,
+        tags: tags,
+        youtubeLinks: [youtubeLink],
+        images: [],
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      });
+      const newSpotResponseSecond = await newSpotResponse;
+      const newlyInsertedId = newSpotResponseSecond;
+      if (typeof newlyInsertedId === 'string') {
+        setNewSpotId(newlyInsertedId);
+        setIsSubmitted(true);
+        clearFormInputs();
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const closeSuccessMessage = () => {
+    setIsSubmitted(false);
   };
 
   return (
@@ -62,10 +92,11 @@ export default function AddSpotForm({ addSpot }: AddSpotFormProps) {
         SPOT NAME:
       </label>
       <input
+        value={name}
+        onChange={(e) => setName(e.target.value)}
         id='name'
         name='name'
         type='text'
-        onChange={(e) => setName(e.target.value)}
         required
       />
       <label htmlFor='description' className='font-bold'>
@@ -230,6 +261,12 @@ export default function AddSpotForm({ addSpot }: AddSpotFormProps) {
         value='Add Spot'
         className='mx-auto py-2 px-3 bg-green-400 rounded-lg hover:bg-green-500 hover:cursor-pointer shadow-md text-lg block'
       />
+      {isSubmitted && (
+        <AddSuccessMessage
+          id={newSpotId}
+          handleCloseClick={closeSuccessMessage}
+        />
+      )}
     </form>
   );
 }
