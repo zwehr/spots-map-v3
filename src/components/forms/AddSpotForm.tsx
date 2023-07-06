@@ -264,9 +264,9 @@ export default function AddSpotForm({ addNewSpot }: AddSpotFormProps) {
           https://youtu.be/nufgmoSNq0E?
           <span className='font-bold'>t=85</span>
         </a>
-        . To get the correct link, make sure to click on 'Embed' after clicking
-        share, then copy the link from the embed code after making sure 'Start
-        at [timestamp]' is selected.)
+        . To get the correct link, make sure to click on &lsquo;Embed&lsquo;
+        after clicking share, then copy the link from the embed code after
+        making sure &lsquo;Start at [timestamp]&lsquo; is selected.)
       </p>
       <label htmlFor='premium' className='font-bold'>
         FREE/PREMIUM:
