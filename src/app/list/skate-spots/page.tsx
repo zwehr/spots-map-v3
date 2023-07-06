@@ -15,8 +15,8 @@ export default async function SpotsList() {
             <th>Name</th>
             <th>Description</th>
             <th>Type</th>
+            <th>City</th>
             <th>Tags</th>
-            <th>Added</th>
             <th>More</th>
           </tr>
         </thead>
@@ -27,10 +27,10 @@ export default async function SpotsList() {
                 <td className='font-semibold'>{spot.name}</td>
                 <td>{spot.description}</td>
                 <td>{spot.type[0].toUpperCase() + spot.type.slice(1)}</td>
+                <td>{spot.city}</td>
                 <td>
                   <LinkTags tags={spot.tags} />
                 </td>
-                <td>{new Date(spot.createdAt).toLocaleDateString('en-US')}</td>
                 <td>
                   <Link
                     href={`/spot/${spot._id}`}

@@ -2,6 +2,7 @@ type Spot = {
   _id: string;
   name: string;
   description: string;
+  city: string;
   lat: number;
   lng: number;
   isPremium: boolean;
