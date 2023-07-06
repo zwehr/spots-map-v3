@@ -57,7 +57,7 @@ export default function GoogleMapFull({
 
   return (
     <GoogleMap
-      zoom={3}
+      zoom={13}
       center={center}
       mapContainerClassName='w-full h-full'
       onLoad={onLoad}
