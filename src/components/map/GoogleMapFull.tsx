@@ -46,6 +46,9 @@ export default function GoogleMapFull({
 
   const onLoad = useCallback((map: google.maps.Map) => {
     setMap(map);
+    // need this to prevent 'find spots' button from appearing initially
+    // (zoom seems to adjust on inital load)
+    setMapMoved(false);
   }, []);
 
   const handleMarkerClick = (spotId: string) => {
@@ -73,6 +76,7 @@ export default function GoogleMapFull({
         }
       }}
       onDragEnd={() => setMapMoved(true)}
+      onZoomChanged={() => setMapMoved(true)}
     >
       {mapMoved && (
         <FindSpotsButton
