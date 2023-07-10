@@ -41,8 +41,14 @@ export default function NavBar() {
                 About
               </Link>
               <Link
+                href='/admin-list'
+                className='py-4 px-3 text-red-500 hover:text-red-700'
+              >
+                Admin List
+              </Link>
+              <Link
                 href='/add'
-                className='py-4 px-3 text-slate-700 hover:text-black'
+                className='py-4 px-3 text-red-500 hover:text-red-700'
               >
                 Add to Database
               </Link>
@@ -92,12 +98,6 @@ export default function NavBar() {
           className='block py-2 px-4 text-sm hover:bg-slate-200'
         >
           About
-        </Link>
-        <Link
-          href='/add'
-          className='block py-2 px-4 text-sm hover:bg-slate-200'
-        >
-          Add to Database
         </Link>
         <Link
           href='/login'
