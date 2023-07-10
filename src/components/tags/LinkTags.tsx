@@ -11,8 +11,8 @@ export default function LinkTags({ tags, selectedTag }: TagProps) {
       {tags.map((tag, index) => (
         <Link
           href={`/list/skate-spots/tag/${tag}`}
-          className={`bg-emerald-200 m-1 p-1 rounded-lg hover:bg-emerald-400 ${
-            tag === selectedTag ? 'bg-emerald-400' : 'bg-emerald-200'
+          className={`bg-sky-200 m-1 p-1 rounded-lg hover:bg-sky-400 shadow-md ${
+            tag === selectedTag ? 'bg-sky-400' : 'bg-sky-200'
           }`}
           key={index}
         >
