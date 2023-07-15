@@ -1,5 +1,110 @@
-import React from 'react';
+'use client';
+
+import { FormEvent, useState } from 'react';
 
 export default function SignUp() {
-  return <h1>Sign Up</h1>;
+  const [data, setData] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const response = await fetch('/api/register', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  };
+
+  return (
+    <>
+      <div className='flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8'>
+        <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
+          <h1 className='text-center leading-9 tracking-tight text-gray-900'>
+            Create an Account
+          </h1>
+        </div>
+
+        <div className='mt-4 p-4 bg-slate-100 shadow-lg rounded-md sm:mx-auto sm:w-full sm:max-w-sm'>
+          <form className='space-y-6' onSubmit={handleSubmit}>
+            <div>
+              <label
+                htmlFor='name'
+                className='block text-sm font-medium leading-6 text-gray-900'
+              >
+                NAME
+              </label>
+              <div className='mt-2'>
+                <input
+                  id='name'
+                  name='name'
+                  type='text'
+                  required
+                  value={data.name}
+                  onChange={(e) => setData({ ...data, name: e.target.value })}
+                  className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+                />
+              </div>
+            </div>
+
+            <div>
+              <label
+                htmlFor='email'
+                className='block text-sm font-medium leading-6 text-gray-900'
+              >
+                EMAIL
+              </label>
+              <div className='mt-2'>
+                <input
+                  id='email'
+                  name='email'
+                  type='email'
+                  autoComplete='email'
+                  required
+                  value={data.email}
+                  onChange={(e) => setData({ ...data, email: e.target.value })}
+                  className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+                />
+              </div>
+            </div>
+
+            <div>
+              <div className='flex items-center justify-between'>
+                <label
+                  htmlFor='password'
+                  className='block text-sm font-medium leading-6 text-gray-900'
+                >
+                  PASSWORD
+                </label>
+              </div>
+              <div className='mt-2'>
+                <input
+                  id='password'
+                  name='password'
+                  type='password'
+                  autoComplete='current-password'
+                  required
+                  value={data.password}
+                  onChange={(e) =>
+                    setData({ ...data, password: e.target.value })
+                  }
+                  className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+                />
+              </div>
+            </div>
+
+            <div className='w-24 mx-auto'>
+              <button
+                type='submit'
+                className='flex w-full justify-center rounded-md bg-green-400 px-3 py-1.5 text-sm leading-6 shadow-sm hover:bg-green-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-400'
+              >
+                Register
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </>
+  );
 }
