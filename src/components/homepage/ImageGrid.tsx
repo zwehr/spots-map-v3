@@ -3,7 +3,7 @@ import Image from 'next/image';
 export default function ImageGrid() {
   return (
     <div className='grid grid-cols-9 grid-rows-5 gap-2 bg-slate-100 p-4'>
-      <div className='absolute h-48 w-96 mx-auto mt-24 left-0 right-0 bg-blur-md bg-white/95 rounded-lg text-center'>
+      <div className='absolute h-48 w-96 mx-auto mt-24 left-0 right-0 bg-blur-md bg-white/95 rounded-lg text-center z-10'>
         <p className='text-center text-2xl py-6'>Search for spots</p>
         <input
           type='text'
