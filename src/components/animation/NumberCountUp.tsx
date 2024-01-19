@@ -10,7 +10,7 @@ export default function NumberCountUp({ count }: NumberCountUpProps) {
   const { number } = useSpring({
     from: { number: 0 }, // starting counting from this number
     number: count, // end with count from props
-    delay: 200,
+    delay: 100,
     config: { mass: 1, tension: 20, friction: 10 },
   });
   return (
