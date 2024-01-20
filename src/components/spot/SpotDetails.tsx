@@ -14,7 +14,14 @@ export default function SpotDetails({ spot }: SpotDetails) {
         <span className='font-bold'>Description:</span> {spot.description}
       </p>
       <p className='mb-4'>
-        <span className='font-bold'>Coordinates:</span> {spot.lat}, {spot.lng}
+        <span className='font-bold'>Location Coordinates: </span>
+        <a
+          href={`https://maps.google.com/?q=${spot.lat},${spot.lng}`}
+          className='link'
+        >
+          {spot.lat.toFixed(5)}, {spot.lng.toFixed(5)} (Click to view on Google
+          Maps)
+        </a>
       </p>
       <p>
         <span className='font-bold'>Tags: </span>
