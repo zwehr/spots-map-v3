@@ -18,6 +18,7 @@ export default function SpotDetails({ spot }: SpotDetails) {
         <a
           href={`https://maps.google.com/?q=${spot.lat},${spot.lng}`}
           className='link'
+          target='_blank'
         >
           {spot.lat.toFixed(5)}, {spot.lng.toFixed(5)} (Click to view on Google
           Maps)
