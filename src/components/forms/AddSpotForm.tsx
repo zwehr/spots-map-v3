@@ -4,6 +4,8 @@ import DeletableTags from '@/components/tags/DeletableTags';
 import { useState, MouseEvent, FormEvent } from 'react';
 import AddSuccessMessage from '@/components/forms/AddSuccessMessage';
 import { BeatLoader } from 'react-spinners';
+import { getSignedURL } from './actions';
+import { nanoid } from 'nanoid';
 
 type AddSpotFormProps = {
   addNewSpot: (newSpot: NewSpot) => Promise<string | undefined>;
@@ -19,10 +21,12 @@ export default function AddSpotForm({ addNewSpot }: AddSpotFormProps) {
   const [status, setStatus] = useState('active');
   const [tag, setTag] = useState('');
   const [tags, setTags] = useState(Array<string>);
-  const [images, setImages] = useState(Array<string>);
+  const [file, setFile] = useState<File | undefined>(undefined);
+  const [fileUrl, setFileUrl] = useState<string | undefined>(undefined);
   const [youtubeLink, setYoutubeLink] = useState('');
   const [isPremium, setIsPremium] = useState(false);
   const [newSpotId, setNewSpotId] = useState('');
+  const [fileName, setFileName] = useState('');
   const [userSubmitted, setUserSubmitted] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
@@ -48,16 +52,77 @@ export default function AddSpotForm({ addNewSpot }: AddSpotFormProps) {
     setStatus('active');
     setTag('');
     setTags([]);
-    setImages([]);
+    setFile(undefined);
     setYoutubeLink('');
     setIsPremium(false);
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    setFile(file);
+
+    if (fileUrl) {
+      URL.revokeObjectURL(fileUrl);
+    }
+
+    if (file) {
+      const url = URL.createObjectURL(file);
+      setFileUrl(url);
+    } else {
+      setFileUrl(undefined);
+    }
+  };
+
+  const computeSHA256 = async (file: File) => {
+    const buffer = await file.arrayBuffer();
+    const hashBuffer = await crypto.subtle.digest('SHA-256', buffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray
+      .map((b) => b.toString(16).padStart(2, '0'))
+      .join('');
+    return hashHex;
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setUserSubmitted(true);
     setSubmitSuccess(false);
+
+    const randName = nanoid();
+    const awsUrl =
+      'https://skate-tourism-spot-images.s3.us-east-2.amazonaws.com/' +
+      randName;
+
+    // NOTE: Meant to check auth first with actions.ts, but currently just returns success
+    // Modify actions.ts later
+    // https://www.youtube.com/watch?v=t-lhgq7Nfpc&t=85s&ab_channel=SamMeech-Ward
     try {
+      if (file) {
+        console.log('file: ', file);
+        const checksum = await computeSHA256(file);
+        const signedUrlResult = await getSignedURL(
+          file.type,
+          file.size,
+          checksum,
+          randName
+        );
+        if (signedUrlResult.failure !== undefined) {
+          console.error('error getting signed url');
+          throw new Error(signedUrlResult.failure);
+        }
+        if (signedUrlResult.success) {
+          const url = signedUrlResult.success.url;
+          console.log('signedUrlResult: ', signedUrlResult);
+
+          await fetch(url, {
+            method: 'PUT',
+            body: file,
+            headers: {
+              'Content-Type': file.type,
+            },
+          });
+        }
+      }
       const newSpotResponse = addNewSpot({
         name: name,
         description: description,
@@ -69,7 +134,7 @@ export default function AddSpotForm({ addNewSpot }: AddSpotFormProps) {
         status: status,
         tags: tags,
         youtubeLinks: [youtubeLink],
-        images: [],
+        images: [awsUrl],
         createdAt: new Date(),
         updatedAt: new Date(),
       });
@@ -269,6 +334,21 @@ export default function AddSpotForm({ addNewSpot }: AddSpotFormProps) {
         after clicking share, then copy the link from the embed code after
         making sure &lsquo;Start at [timestamp]&lsquo; is selected.)
       </p>
+      <label htmlFor='files' className='font-bold'>
+        IMAGES:
+      </label>
+      <input
+        type='file'
+        className=''
+        name='spot-photos'
+        accept='image/jpeg, image/png'
+        onChange={handleFileChange}
+      ></input>
+      {fileUrl && file && (
+        <div className='w-24'>
+          <img src={fileUrl} alt={file.name} />
+        </div>
+      )}
       <label htmlFor='premium' className='font-bold'>
         FREE/PREMIUM:
       </label>
