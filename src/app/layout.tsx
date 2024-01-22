@@ -1,8 +1,6 @@
 import NavBar from '../components/nav/NavBar';
 import './globals.css';
-import { Inter } from 'next/font/google';
-
-const inter = Inter({ subsets: ['latin'] });
+import { oswald } from './fonts';
 
 export const metadata = {
   title: 'Skate Tourism',
@@ -15,8 +13,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en'>
-      <body className={inter.className}>
+    <html lang='en' className={oswald.className}>
+      <body>
         <NavBar></NavBar>
         {children}
       </body>

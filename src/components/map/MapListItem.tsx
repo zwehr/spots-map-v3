@@ -1,3 +1,4 @@
+import { merriweather } from '@/app/fonts';
 import youtubeToTimestamp from '@/lib/misc-helper/youtubeToTimestamp';
 import Link from 'next/link';
 import { FiCornerRightDown } from 'react-icons/fi';
@@ -31,7 +32,7 @@ export default function MapListItem({ spot, selectedSpot }: MapListItemProps) {
           allowFullScreen
         ></iframe>
       </div>
-      <p className='mt-2'>{spot.description}</p>
+      <p className={`mt-2 ${merriweather.className}`}>{spot.description}</p>
       <div className='mt-2 ml-auto'>
         <Link href={`/spot/${spot._id}`} className='link'>
           View more information...

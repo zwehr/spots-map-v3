@@ -3,6 +3,7 @@ import ImageGrid from '@/components/homepage/ImageGrid';
 import Image from 'next/image';
 import { FaHeart, FaSearch, FaYoutube } from 'react-icons/fa';
 import { GiSkateboard } from 'react-icons/gi';
+import { merriweather } from './fonts';
 
 export default function Home() {
   return (
@@ -68,21 +69,27 @@ export default function Home() {
           <ul className='ml-4'>
             <li className='flex m-2'>
               <FaSearch />
-              <p className='pl-1'>A robust tagging and search system.</p>
+              <p className={`pl-1 ${merriweather.className}`}>
+                Robust tagging and search system.
+              </p>
             </li>
             <li className='flex m-2'>
               <FaYoutube />
-              <p className='pl-1'>
+              <p className={`pl-1 ${merriweather.className}`}>
                 Weekly additions from the newest video releases.
               </p>
             </li>
             <li className='flex m-2'>
               <GiSkateboard />
-              <p className='pl-1'>Created and curated by skaters.</p>
+              <p className={`pl-1 ${merriweather.className}`}>
+                Created and curated by skaters.
+              </p>
             </li>
             <li className='flex m-2'>
               <FaHeart />
-              <p className='pl-1'>Save your favorite spots.</p>
+              <p className={`pl-1 ${merriweather.className}`}>
+                Save your favorite spots.
+              </p>
             </li>
           </ul>
         </div>
