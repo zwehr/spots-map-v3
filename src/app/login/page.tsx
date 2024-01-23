@@ -31,7 +31,7 @@ export default function LoginPage() {
     }
 
     getUser();
-  }, [supabase.auth]);
+  });
 
   const handleSignUp = async () => {
     const res = await supabase.auth.signUp({
@@ -81,7 +81,7 @@ export default function LoginPage() {
           <h1
             className={`mb-8 text-xl font-bold text-slate-900 ${merriweather.className}`}
           >
-            You're logged in.
+            You are logged in.
           </h1>
           <button
             onClick={handleLogout}
