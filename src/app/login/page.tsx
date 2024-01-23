@@ -31,7 +31,7 @@ export default function LoginPage() {
     }
 
     getUser();
-  }, []);
+  }, [supabase.auth]);
 
   const handleSignUp = async () => {
     const res = await supabase.auth.signUp({
