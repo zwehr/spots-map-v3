@@ -19,7 +19,7 @@ export default function ImageGrid() {
       </div>
       <div className='bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={600}
@@ -28,7 +28,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -37,7 +37,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -46,7 +46,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -55,7 +55,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -64,7 +64,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -73,7 +73,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -82,7 +82,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -91,7 +91,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -100,7 +100,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -109,7 +109,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -118,7 +118,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -127,7 +127,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -136,7 +136,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -145,7 +145,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -154,7 +154,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -163,7 +163,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -172,7 +172,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -181,7 +181,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -190,7 +190,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -199,7 +199,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -208,7 +208,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -217,7 +217,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -226,7 +226,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -235,7 +235,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -244,7 +244,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -253,7 +253,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -262,7 +262,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -271,7 +271,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -280,7 +280,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -289,7 +289,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -298,7 +298,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -307,7 +307,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -316,7 +316,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -325,7 +325,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -334,7 +334,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -343,7 +343,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -352,7 +352,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -361,7 +361,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -370,7 +370,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -379,7 +379,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -388,7 +388,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -397,7 +397,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -406,7 +406,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
@@ -415,7 +415,7 @@ export default function ImageGrid() {
       </div>
       <div className='h-24 bg-slate-200 rounded-md hover:bg-slate-300'>
         <Image
-          className='hover:scale-105 transition-all duration-500 rounded-md'
+          className='hover:scale-105 transition-all duration-500 rounded-md opacity-50 hover:opacity-100'
           src='/handrail.jpeg'
           width={500}
           height={500}
