@@ -35,8 +35,8 @@ export default async function ImageGrid() {
               <Image
                 className='rounded-sm opacity-50 hover:opacity-100 transition-all duration-200'
                 src={spot.image_links[0]}
-                width={500}
-                height={600}
+                width={400}
+                height={300}
                 alt='Skatespot photo'
               />
             </Link>
