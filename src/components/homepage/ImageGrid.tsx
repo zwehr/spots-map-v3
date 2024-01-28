@@ -33,7 +33,7 @@ export default async function ImageGrid() {
           >
             <Link href='#'>
               <Image
-                className='hover:scale-105 transition-all duration-500 rounded-sm opacity-50 hover:opacity-100'
+                className='rounded-sm opacity-50 hover:opacity-100 transition-all duration-200'
                 src={spot.image_links[0]}
                 width={500}
                 height={600}
