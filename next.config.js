@@ -1,8 +1,13 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+
+module.exports = {
   images: {
-    domains: ['skate-tourism-spot-images.s3.us-east-2.amazonaws.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'zfldoydilnfavwhlbhzz.supabase.co',
+        pathname: '/storage/**',
+      },
+    ],
   },
 };
-
-module.exports = nextConfig;

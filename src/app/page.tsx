@@ -7,7 +7,7 @@ import { merriweather } from './fonts';
 
 export default function Home() {
   return (
-    <>
+    <div className='max-w-screen-xl mx-auto my-4 shadow-lg'>
       <h1 className='hidden'>Home</h1>
       <ImageGrid></ImageGrid>
       <div className='recent-and-description flex h-96 bg-gradient-to-r from-blue-100 from-20% via-neutral-200 via-40% to-emerald-200 to-90%'>
@@ -94,6 +94,6 @@ export default function Home() {
           </ul>
         </div>
       </div>
-    </>
+    </div>
   );
 }
