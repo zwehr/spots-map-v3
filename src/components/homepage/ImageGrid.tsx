@@ -4,7 +4,7 @@ import supabase from '@/lib/utils/supabase';
 import { merriweather } from '@/app/fonts';
 
 export default async function ImageGrid() {
-  const { data: spots } = await supabase.from('spots').select();
+  const { data: spots } = await supabase.from('spots').select().limit(45);
   console.log(spots);
   spots && console.log(spots.length);
 
