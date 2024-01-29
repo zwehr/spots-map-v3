@@ -1,10 +1,9 @@
 import LinkTags from '../tags/LinkTags';
+import { Database } from '../../../types/supabase';
 
-type SpotDetails = {
-  spot: Spot;
-};
+type Spot = Database['public']['Tables']['spots']['Row'];
 
-export default function SpotDetails({ spot }: SpotDetails) {
+export default function SpotDetails({ spot }: { spot: Spot }) {
   return (
     <>
       <p className='mb-4'>
@@ -20,8 +19,8 @@ export default function SpotDetails({ spot }: SpotDetails) {
           className='link'
           target='_blank'
         >
-          {spot.lat.toFixed(5)}, {spot.lng.toFixed(5)} (Click to view on Google
-          Maps)
+          {spot.lat && spot.lat.toFixed(5)}, {spot.lng && spot.lng.toFixed(5)}{' '}
+          (Click to view on Google Maps)
         </a>
       </p>
       <p>
@@ -30,15 +29,15 @@ export default function SpotDetails({ spot }: SpotDetails) {
       <LinkTags tags={spot.tags} />
       <p className='mb-4 mt-4'>
         <span className='font-bold'>Type:</span>{' '}
-        {spot.type[0].toUpperCase() + spot.type.slice(1)}
+        {spot.type && spot.type[0].toUpperCase() + spot.type.slice(1)}
       </p>
       <p className='mb-4'>
         <span className='font-bold'>Status:</span>{' '}
-        {spot.status[0].toUpperCase() + spot.status.slice(1)}
+        {spot.status && spot.status[0].toUpperCase() + spot.status.slice(1)}
       </p>
       <p className='mb-4'>
         <span className='font-bold'>Date Added:</span>{' '}
-        {new Date(spot.createdAt).toLocaleDateString('en-US')}
+        {new Date(spot.created_at).toLocaleDateString('en-US')}
       </p>
     </>
   );
