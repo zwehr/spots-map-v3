@@ -50,10 +50,7 @@ export default async function SpotsListByTag({
                     <td>{spot.type[0].toUpperCase() + spot.type.slice(1)}</td>
                     <td>{spot.city}</td>
                     <td>
-                      <LinkTags
-                        tags={spot.tags}
-                        selectedTag={decodeURI(params.tag)}
-                      />
+                      <LinkTags tags={spot.tags} />
                     </td>
                     <td>
                       <Link
