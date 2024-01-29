@@ -37,11 +37,6 @@ export default function SpotDetails({ spot }: SpotDetails) {
         {spot.status[0].toUpperCase() + spot.status.slice(1)}
       </p>
       <p className='mb-4'>
-        <span className='font-bold'>Premium:</span>{' '}
-        {spot.isPremium.toString()[0].toUpperCase() +
-          spot.isPremium.toString().slice(1)}
-      </p>
-      <p className='mb-4'>
         <span className='font-bold'>Date Added:</span>{' '}
         {new Date(spot.createdAt).toLocaleDateString('en-US')}
       </p>

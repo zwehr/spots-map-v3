@@ -31,7 +31,7 @@ export default async function ImageGrid() {
             key={spot.id}
             className='bg-slate-200 rounded-md hover:bg-slate-300'
           >
-            <Link href='#'>
+            <Link href={`/spot/${spot.id}`}>
               <Image
                 className='rounded-sm opacity-50 hover:opacity-100 transition-all duration-200'
                 src={spot.image_links[0]}
