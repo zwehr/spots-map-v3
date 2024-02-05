@@ -5,6 +5,7 @@ import { createPagesServerClient } from '@supabase/auth-helpers-nextjs';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { Database } from '../../../../types/supabase';
 import supabase from '@/lib/utils/supabase';
+import SingleSpotMap from '@/components/spot/SingleSpotMap';
 // old mongodb helper import
 //import getSpotById from '@/lib/fetch/getSpotById';
 
@@ -40,6 +41,9 @@ export default async function Spot({ params }: { params: { id: string } }) {
 
     return (
       <>
+        <div>
+          <SingleSpotMap lat={spot.lat} lng={spot.lng} />
+        </div>
         <div className='w-1/2 mx-auto mt-6'>
           {spot && <SpotImage images={spot.image_links} />}
         </div>
