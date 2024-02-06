@@ -16,7 +16,7 @@ export default function SingleSpotMap({ lat, lng }: SingleSpotMapProps) {
   const mapRef = useRef();
 
   return (
-    <div className='container w-1/3 h-24'>
+    <div className='container w-1/3 h-1/2'>
       <MapContainer
         center={[lat!, lng!]}
         zoom={ZOOM_LEVEL}
@@ -26,6 +26,7 @@ export default function SingleSpotMap({ lat, lng }: SingleSpotMapProps) {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
         />
+        <Marker position={[lat!, lng!]} />
       </MapContainer>
     </div>
   );
