@@ -1,4 +1,5 @@
 'use server';
+import supabase from '@/lib/utils/supabase';
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
@@ -46,4 +47,10 @@ export async function getSignedURL(
     return { success: { url: signedUrl, name: randName } };
     // unreachable by design... for the moment
   } else return { failure: 'Not authenticated' };
+}
+
+export async function getVideoTitles(query: string) {
+  const { data, error } = await supabase.from('videos').select('id, title').filter('title', 'ilike', `%${query}%`).limit(5)
+  console.log(data);
+  return data
 }

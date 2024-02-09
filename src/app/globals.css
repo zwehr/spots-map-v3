@@ -35,10 +35,18 @@ label {
   @apply block;
 }
 
-input,
+form {
+  font-family: merriweather;
+}
+
+form input,
 textarea,
 select {
-  @apply mb-3;
+  @apply mb-8;
+}
+
+ol {
+  list-style-type: decimal;
 }
 
 /* 
