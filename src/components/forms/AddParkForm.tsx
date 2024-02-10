@@ -322,9 +322,9 @@ export default function AddParkForm() {
           <div className='mb-8'>
             {isOutsideUsCaAu && (
               <p className='text-gray-600 italic'>
-                Country must be 'United States,' 'Canada,' or 'Australia to
-                reverse geocode search.' Otherwise enter City and State
-                manually.
+                Country must be &apos;United States,&apos; &apos;Canada,&apos;
+                or &apos;Australia&apos; to reverse geocode search. Otherwise
+                enter City and State manually.
               </p>
             )}
           </div>
