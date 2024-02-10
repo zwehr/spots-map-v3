@@ -13,8 +13,8 @@ export default function AddParkForm() {
   const [name, setName] = useState('');
   const [builder, setBuilder] = useState('');
   const [builders, setBuilders] = useState(Array<string>);
-  const [lat, setLat] = useState('');
-  const [lng, setLng] = useState('');
+  const [lat, setLat] = useState<number | undefined>();
+  const [lng, setLng] = useState<number | undefined>();
   const [country, setCountry] = useState('');
   const [isOutsideUsCaAu, setIsOutsideUsCaAu] = useState(true);
   const [city, setCity] = useState('');
@@ -70,7 +70,6 @@ export default function AddParkForm() {
   };
 
   const handleOptionClick = (option: OptionType) => {
-    // Update the featuredIn state array when an option is clicked
     setFeaturedIn((prevFeaturedIn) => [...prevFeaturedIn, option]);
     setMenuIsOpen(false);
   };
@@ -96,6 +95,23 @@ export default function AddParkForm() {
       {data.label}
     </div>
   );
+
+  const handleLatLngChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const userInput = e.target.value;
+    const [latStr, lngStr] = userInput.split(',');
+
+    if (latStr !== undefined && lngStr !== undefined) {
+      const lat = parseFloat(latStr.trim());
+      const lng = parseFloat(lngStr.trim());
+
+      if (!isNaN(lat)) {
+        setLat(lat);
+      }
+      if (!isNaN(lng)) {
+        setLng(lng);
+      }
+    }
+  };
 
   const handleReverseGeocode = () => {
     let countryCode;
@@ -229,8 +245,8 @@ export default function AddParkForm() {
             loadOptions={loadOptions}
             components={{ Option: customOption }}
             menuIsOpen={menuIsOpen}
-            onMenuOpen={() => setMenuIsOpen(true)} // Set menuIsOpen to true when the menu opens
-            onMenuClose={() => setMenuIsOpen(false)} // Set menuIsOpen to false when the menu closes
+            onMenuOpen={() => setMenuIsOpen(true)}
+            onMenuClose={() => setMenuIsOpen(false)}
           />
           <div className='ml-6 mb-8 mt-1'>
             <ol>
@@ -254,29 +270,28 @@ export default function AddParkForm() {
         </div>
 
         <div className='w-1/2'>
-          <label htmlFor='lat' className='uppercase font-bold'>
-            Latitude:
+          <label htmlFor='latLong' className='uppercase font-bold'>
+            Latitude/Longitude:
           </label>
           <input
             type='text'
-            name='lat'
-            id='lat'
-            value={lat}
-            onChange={(e) => setLat(e.target.value)}
+            name='latLong'
+            id='latLong'
+            onChange={(e) => handleLatLngChange(e)}
+            className='mb-0 w-3/4'
             required
           />
-
-          <label htmlFor='lng' className='uppercase font-bold'>
-            Longitude:
-          </label>
-          <input
-            type='text'
-            name='lng'
-            id='lng'
-            value={lng}
-            onChange={(e) => setLng(e.target.value)}
-            required
-          />
+          <div className='mb-8'>
+            {lat && lng ? (
+              <p>
+                Lat: {lat} Lng: {lng}
+              </p>
+            ) : (
+              <p className='text-red-500 italic'>
+                Enter two numbers with comma and space between.
+              </p>
+            )}
+          </div>
 
           <label htmlFor='country' className='uppercase font-bold'>
             Country:
