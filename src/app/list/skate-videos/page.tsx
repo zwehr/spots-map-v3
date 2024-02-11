@@ -9,23 +9,33 @@ export default function VideosList() {
   type Video = Database['public']['Tables']['videos']['Row'];
 
   const [videos, setVideos] = useState<Video[]>([]);
+  const [page, setPage] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const rangeStartRef = useRef<number>(0);
+
+  const getRangeBounds = (currentPage: number) => {
+    const ITEMS_PER_PAGE = 5;
+    let from = page * ITEMS_PER_PAGE;
+    let to = from + ITEMS_PER_PAGE;
+
+    if (page > 0) {
+      from += 1;
+    }
+    console.log(`inside getRangeBounds, from is ${from} and to is ${to}`);
+    return { from, to };
+  };
 
   const getVideos = async () => {
-    const rangeStart = rangeStartRef.current;
-
     try {
+      const { from, to } = getRangeBounds(page);
+      console.log(`inside getVideos, from is ${from} and to is ${to}`);
       const { data, error } = await supabase
         .from('videos')
         .select()
-        .order('created_at', { ascending: false })
-        .range(rangeStart, rangeStart + 25);
-
+        .range(from, to);
+      setPage((prevPage) => prevPage + 1);
       if (data) {
         console.log(data);
         setVideos((prevVideos) => [...prevVideos, ...data]);
-        rangeStartRef.current += 26;
       }
       if (error) {
         console.log(error);
@@ -37,23 +47,6 @@ export default function VideosList() {
 
   useEffect(() => {
     getVideos();
-
-    const handleScroll = () => {
-      if (
-        window.innerHeight + document.documentElement.scrollTop ===
-        document.documentElement.offsetHeight
-      ) {
-        getVideos();
-      }
-    };
-
-    // Add event listener when component mounts
-    window.addEventListener('scroll', handleScroll);
-
-    // Clean up event listener when component unmounts
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
   }, []);
 
   return (
@@ -72,9 +65,12 @@ export default function VideosList() {
               </p>
             </div>
           ))}
-        <div className='text-center'>
-          <ClipLoader />
-        </div>
+        <button
+          className='bg-green-500 uppercase mx-auto p-2 rounded-md'
+          onClick={getVideos}
+        >
+          Load More
+        </button>
       </div>
     </div>
   );
