@@ -124,7 +124,8 @@ export default function AddVideoForm() {
       <p className='mb-8 text-gray-600 italic'>
         On YouTube video page, click <span className='font-bold'>Share</span>,
         then <span className='font-bold'>Embed</span>, and then copy link from
-        src="<span className='font-bold'>...youtube.com/embed...</span>".
+        src=&quot;<span className='font-bold'>...youtube.com/embed...</span>
+        &quot;.
       </p>
 
       <button
