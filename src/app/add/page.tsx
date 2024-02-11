@@ -14,6 +14,16 @@ export default function AddSelection() {
           Add a Park
         </Link>
       </h2>
+      <h2>
+        {/* <Link href='/add/shop' className='link'> */}
+        Add a Shop
+        {/*  </Link> */}
+      </h2>
+      <h2>
+        <Link href='/add/video' className='link'>
+          Add a Video
+        </Link>
+      </h2>
     </>
   );
 }

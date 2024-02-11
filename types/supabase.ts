@@ -4,249 +4,324 @@ export type Json =
   | boolean
   | null
   | { [key: string]: Json | undefined }
-  | Json[];
+  | Json[]
 
-export interface Database {
+export type Database = {
   public: {
     Tables: {
+      parks: {
+        Row: {
+          building_affiliates: string[]
+          city: string
+          country: string
+          created_at: string
+          id: number
+          image_links: string[] | null
+          lat: number
+          lng: number
+          name: string
+          year: number | null
+        }
+        Insert: {
+          building_affiliates: string[]
+          city: string
+          country: string
+          created_at?: string
+          id?: number
+          image_links?: string[] | null
+          lat: number
+          lng: number
+          name: string
+          year?: number | null
+        }
+        Update: {
+          building_affiliates?: string[]
+          city?: string
+          country?: string
+          created_at?: string
+          id?: number
+          image_links?: string[] | null
+          lat?: number
+          lng?: number
+          name?: string
+          year?: number | null
+        }
+        Relationships: []
+      }
       spot_likes: {
         Row: {
-          created_at: string;
-          id: number;
-          spot_id: number | null;
-          user_id: string | null;
-        };
+          created_at: string
+          id: number
+          spot_id: number | null
+          user_id: string | null
+        }
         Insert: {
-          created_at?: string;
-          id?: number;
-          spot_id?: number | null;
-          user_id?: string | null;
-        };
+          created_at?: string
+          id?: number
+          spot_id?: number | null
+          user_id?: string | null
+        }
         Update: {
-          created_at?: string;
-          id?: number;
-          spot_id?: number | null;
-          user_id?: string | null;
-        };
+          created_at?: string
+          id?: number
+          spot_id?: number | null
+          user_id?: string | null
+        }
         Relationships: [
           {
-            foreignKeyName: 'spot_likes_spot_id_fkey';
-            columns: ['spot_id'];
-            isOneToOne: false;
-            referencedRelation: 'spots';
-            referencedColumns: ['id'];
+            foreignKeyName: "spot_likes_spot_id_fkey"
+            columns: ["spot_id"]
+            isOneToOne: false
+            referencedRelation: "spots"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: 'spot_likes_user_id_fkey';
-            columns: ['user_id'];
-            isOneToOne: false;
-            referencedRelation: 'users';
-            referencedColumns: ['id'];
+            foreignKeyName: "spot_likes_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
           }
-        ];
-      };
+        ]
+      }
       spots: {
         Row: {
-          city: string | null;
-          created_at: string;
-          description: string | null;
-          featured_in: number[] | null;
-          id: number;
-          image_links: string[] | null;
-          is_premium: boolean | null;
-          lat: number | null;
-          lng: number | null;
-          name: string | null;
-          status: string | null;
-          tags: string[] | null;
-          type: string | null;
-          youtube_links: string[] | null;
-        };
+          city: string | null
+          created_at: string
+          description: string | null
+          featured_in: number[] | null
+          id: number
+          image_links: string[] | null
+          is_premium: boolean | null
+          lat: number | null
+          lng: number | null
+          name: string | null
+          status: string | null
+          tags: string[] | null
+          type: string | null
+          youtube_links: string[] | null
+        }
         Insert: {
-          city?: string | null;
-          created_at?: string;
-          description?: string | null;
-          featured_in?: number[] | null;
-          id?: number;
-          image_links?: string[] | null;
-          is_premium?: boolean | null;
-          lat?: number | null;
-          lng?: number | null;
-          name?: string | null;
-          status?: string | null;
-          tags?: string[] | null;
-          type?: string | null;
-          youtube_links?: string[] | null;
-        };
+          city?: string | null
+          created_at?: string
+          description?: string | null
+          featured_in?: number[] | null
+          id?: number
+          image_links?: string[] | null
+          is_premium?: boolean | null
+          lat?: number | null
+          lng?: number | null
+          name?: string | null
+          status?: string | null
+          tags?: string[] | null
+          type?: string | null
+          youtube_links?: string[] | null
+        }
         Update: {
-          city?: string | null;
-          created_at?: string;
-          description?: string | null;
-          featured_in?: number[] | null;
-          id?: number;
-          image_links?: string[] | null;
-          is_premium?: boolean | null;
-          lat?: number | null;
-          lng?: number | null;
-          name?: string | null;
-          status?: string | null;
-          tags?: string[] | null;
-          type?: string | null;
-          youtube_links?: string[] | null;
-        };
-        Relationships: [];
-      };
-      user_profiles: {
+          city?: string | null
+          created_at?: string
+          description?: string | null
+          featured_in?: number[] | null
+          id?: number
+          image_links?: string[] | null
+          is_premium?: boolean | null
+          lat?: number | null
+          lng?: number | null
+          name?: string | null
+          status?: string | null
+          tags?: string[] | null
+          type?: string | null
+          youtube_links?: string[] | null
+        }
+        Relationships: []
+      }
+      spots_videos: {
         Row: {
-          created_at: string;
-          id: string;
-          interval: string | null;
-          is_subscribed: boolean | null;
-          nick_name: string | null;
-        };
+          id: number
+          spot_id: number
+          video_id: number
+        }
         Insert: {
-          created_at?: string;
-          id: string;
-          interval?: string | null;
-          is_subscribed?: boolean | null;
-          nick_name?: string | null;
-        };
+          id?: number
+          spot_id: number
+          video_id: number
+        }
         Update: {
-          created_at?: string;
-          id?: string;
-          interval?: string | null;
-          is_subscribed?: boolean | null;
-          nick_name?: string | null;
-        };
+          id?: number
+          spot_id?: number
+          video_id?: number
+        }
         Relationships: [
           {
-            foreignKeyName: 'user_profiles_id_fkey';
-            columns: ['id'];
-            isOneToOne: true;
-            referencedRelation: 'users';
-            referencedColumns: ['id'];
+            foreignKeyName: "spots_videos_spot_id_fkey"
+            columns: ["spot_id"]
+            isOneToOne: false
+            referencedRelation: "spots"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "spots_videos_video_id_fkey"
+            columns: ["video_id"]
+            isOneToOne: false
+            referencedRelation: "videos"
+            referencedColumns: ["id"]
           }
-        ];
-      };
+        ]
+      }
+      user_profiles: {
+        Row: {
+          created_at: string
+          id: string
+          interval: string | null
+          is_subscribed: boolean | null
+          nick_name: string | null
+        }
+        Insert: {
+          created_at?: string
+          id: string
+          interval?: string | null
+          is_subscribed?: boolean | null
+          nick_name?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          interval?: string | null
+          is_subscribed?: boolean | null
+          nick_name?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_profiles_id_fkey"
+            columns: ["id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       videos: {
         Row: {
-          company: string | null;
-          created_at: string;
-          id: number;
-          release_date: string | null;
-          title: string | null;
-          youtube_link: string | null;
-        };
+          company: string | null
+          created_at: string
+          id: number
+          release_year: number
+          title: string
+          youtube_embed_link: string | null
+          youtube_link: string | null
+        }
         Insert: {
-          company?: string | null;
-          created_at?: string;
-          id?: number;
-          release_date?: string | null;
-          title?: string | null;
-          youtube_link?: string | null;
-        };
+          company?: string | null
+          created_at?: string
+          id?: number
+          release_year: number
+          title: string
+          youtube_embed_link?: string | null
+          youtube_link?: string | null
+        }
         Update: {
-          company?: string | null;
-          created_at?: string;
-          id?: number;
-          release_date?: string | null;
-          title?: string | null;
-          youtube_link?: string | null;
-        };
-        Relationships: [];
-      };
-    };
+          company?: string | null
+          created_at?: string
+          id?: number
+          release_year?: number
+          title?: string
+          youtube_embed_link?: string | null
+          youtube_link?: string | null
+        }
+        Relationships: []
+      }
+    }
     Views: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     Functions: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     Enums: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     CompositeTypes: {
-      [_ in never]: never;
-    };
-  };
+      [_ in never]: never
+    }
+  }
 }
 
 export type Tables<
   PublicTableNameOrOptions extends
-    | keyof (Database['public']['Tables'] & Database['public']['Views'])
+    | keyof (Database["public"]["Tables"] & Database["public"]["Views"])
     | { schema: keyof Database },
   TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof (Database[PublicTableNameOrOptions['schema']]['Tables'] &
-        Database[PublicTableNameOrOptions['schema']]['Views'])
+    ? keyof (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
+        Database[PublicTableNameOrOptions["schema"]]["Views"])
     : never = never
 > = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? (Database[PublicTableNameOrOptions['schema']]['Tables'] &
-      Database[PublicTableNameOrOptions['schema']]['Views'])[TableName] extends {
-      Row: infer R;
+  ? (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
+      Database[PublicTableNameOrOptions["schema"]]["Views"])[TableName] extends {
+      Row: infer R
     }
     ? R
     : never
-  : PublicTableNameOrOptions extends keyof (Database['public']['Tables'] &
-      Database['public']['Views'])
-  ? (Database['public']['Tables'] &
-      Database['public']['Views'])[PublicTableNameOrOptions] extends {
-      Row: infer R;
+  : PublicTableNameOrOptions extends keyof (Database["public"]["Tables"] &
+      Database["public"]["Views"])
+  ? (Database["public"]["Tables"] &
+      Database["public"]["Views"])[PublicTableNameOrOptions] extends {
+      Row: infer R
     }
     ? R
     : never
-  : never;
+  : never
 
 export type TablesInsert<
   PublicTableNameOrOptions extends
-    | keyof Database['public']['Tables']
+    | keyof Database["public"]["Tables"]
     | { schema: keyof Database },
   TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicTableNameOrOptions['schema']]['Tables']
+    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
     : never = never
 > = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicTableNameOrOptions['schema']]['Tables'][TableName] extends {
-      Insert: infer I;
+  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Insert: infer I
     }
     ? I
     : never
-  : PublicTableNameOrOptions extends keyof Database['public']['Tables']
-  ? Database['public']['Tables'][PublicTableNameOrOptions] extends {
-      Insert: infer I;
+  : PublicTableNameOrOptions extends keyof Database["public"]["Tables"]
+  ? Database["public"]["Tables"][PublicTableNameOrOptions] extends {
+      Insert: infer I
     }
     ? I
     : never
-  : never;
+  : never
 
 export type TablesUpdate<
   PublicTableNameOrOptions extends
-    | keyof Database['public']['Tables']
+    | keyof Database["public"]["Tables"]
     | { schema: keyof Database },
   TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicTableNameOrOptions['schema']]['Tables']
+    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
     : never = never
 > = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicTableNameOrOptions['schema']]['Tables'][TableName] extends {
-      Update: infer U;
+  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Update: infer U
     }
     ? U
     : never
-  : PublicTableNameOrOptions extends keyof Database['public']['Tables']
-  ? Database['public']['Tables'][PublicTableNameOrOptions] extends {
-      Update: infer U;
+  : PublicTableNameOrOptions extends keyof Database["public"]["Tables"]
+  ? Database["public"]["Tables"][PublicTableNameOrOptions] extends {
+      Update: infer U
     }
     ? U
     : never
-  : never;
+  : never
 
 export type Enums<
   PublicEnumNameOrOptions extends
-    | keyof Database['public']['Enums']
+    | keyof Database["public"]["Enums"]
     | { schema: keyof Database },
   EnumName extends PublicEnumNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicEnumNameOrOptions['schema']]['Enums']
+    ? keyof Database[PublicEnumNameOrOptions["schema"]]["Enums"]
     : never = never
 > = PublicEnumNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicEnumNameOrOptions['schema']]['Enums'][EnumName]
-  : PublicEnumNameOrOptions extends keyof Database['public']['Enums']
-  ? Database['public']['Enums'][PublicEnumNameOrOptions]
-  : never;
+  ? Database[PublicEnumNameOrOptions["schema"]]["Enums"][EnumName]
+  : PublicEnumNameOrOptions extends keyof Database["public"]["Enums"]
+  ? Database["public"]["Enums"][PublicEnumNameOrOptions]
+  : never

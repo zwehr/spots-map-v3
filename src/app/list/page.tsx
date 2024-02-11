@@ -45,6 +45,16 @@ export default async function ListSelection() {
           View Parks List
         </Link>
       </h2>
+      <h2>
+        <Link href='/list/skate-shops' className='link'>
+          View Shops List
+        </Link>
+      </h2>
+      <h2>
+        <Link href='/list/skate-videos' className='link'>
+          View Videos List
+        </Link>
+      </h2>
     </>
   );
 }

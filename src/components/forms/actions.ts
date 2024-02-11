@@ -54,3 +54,19 @@ export async function getVideoTitles(query: string) {
   console.log(data);
   return data
 }
+
+export async function insertVideo(title: string, company: string | null, year: number, youtubePageLink: string, youtubeEmbedLink: string) {
+  const { data, error } = await supabase
+  .from('videos')
+  .insert({title, company, release_year: year, youtube_link: youtubePageLink, youtube_embed_link: youtubeEmbedLink})
+  .select('id')
+
+  if (error) {
+    return {error: error.message}
+  }
+  if (data && data.length > 0) {
+    console.log(data);
+    return {data: data[0].id}
+  }
+  
+}
