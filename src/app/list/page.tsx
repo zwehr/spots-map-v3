@@ -5,6 +5,7 @@ import { User } from '@supabase/auth-helpers-nextjs';
 import { merriweather } from '../fonts';
 
 export default async function ListSelection() {
+  /*
   const cookieStore = cookies;
   const supabase = createServerComponentClient({
     cookies: () => cookieStore(),
@@ -31,6 +32,7 @@ export default async function ListSelection() {
       </main>
     );
   }
+  */
 
   return (
     <>
