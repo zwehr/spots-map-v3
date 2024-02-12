@@ -10,10 +10,12 @@ export default function VideosList() {
 
   const [videos, setVideos] = useState<Video[]>([]);
   const [page, setPage] = useState<number>(0);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isInitialFetchComplete, setIsInitialFetchComplete] =
+    useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const getRangeBounds = (currentPage: number) => {
-    const ITEMS_PER_PAGE = 5;
+    const ITEMS_PER_PAGE = 20;
     let from = page * ITEMS_PER_PAGE;
     let to = from + ITEMS_PER_PAGE;
 
@@ -25,13 +27,15 @@ export default function VideosList() {
   };
 
   const getVideos = async () => {
+    setIsLoading(true);
     try {
       const { from, to } = getRangeBounds(page);
       console.log(`inside getVideos, from is ${from} and to is ${to}`);
       const { data, error } = await supabase
         .from('videos')
         .select()
-        .range(from, to);
+        .range(from, to)
+        .order('created_at', { ascending: false });
       setPage((prevPage) => prevPage + 1);
       if (data) {
         console.log(data);
@@ -43,10 +47,12 @@ export default function VideosList() {
     } catch (error) {
       console.error('Error fetching data:', error);
     }
+    setIsLoading(false);
   };
 
   useEffect(() => {
     getVideos();
+    setIsInitialFetchComplete(true);
   }, []);
 
   return (
@@ -59,18 +65,26 @@ export default function VideosList() {
               key={video.id}
               className='bg-gray-200 rounded p-4 m-4 shadow-md'
             >
-              <h2 className='text-left'>{video.title}</h2>
-              <p className='pl-4 capitalize'>
-                {video.release_year} {video.company}
-              </p>
+              <h2 className='text-left'>
+                {video.title} ({video.release_year})
+              </h2>
+              <p className='pl-4 capitalize'>{video.company}</p>
             </div>
           ))}
-        <button
-          className='bg-green-500 uppercase mx-auto p-2 rounded-md'
-          onClick={getVideos}
-        >
-          Load More
-        </button>
+        <div className='w-36 mx-auto'>
+          {!isLoading && isInitialFetchComplete ? (
+            <button
+              className='bg-green-400 text-xl uppercase w-full mx-auto mt-2 p-2 rounded-md shadow-lg hover:bg-green-500'
+              onClick={getVideos}
+            >
+              Load More
+            </button>
+          ) : (
+            <div className='mx-auto text-center'>
+              <ClipLoader />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
