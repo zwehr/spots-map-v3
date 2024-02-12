@@ -68,7 +68,12 @@ export default function VideosList() {
               <h2 className='text-left'>
                 {video.title} ({video.release_year})
               </h2>
-              <p className='pl-4 capitalize'>{video.company}</p>
+              <div className='flex'>
+                <p className='pl-4 capitalize'>{video.company}</p>
+                <a href={'/video/' + video.id} className='pr-4 ml-auto link'>
+                  More Info
+                </a>
+              </div>
             </div>
           ))}
         <div className='w-36 mx-auto'>
