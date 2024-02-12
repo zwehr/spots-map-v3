@@ -12,11 +12,11 @@ h1 {
 }
 
 h2 {
-  @apply text-3xl text-center m-3;
+  @apply text-3xl text-center;
 }
 
 .link {
-  @apply underline text-sky-600 hover:text-sky-800;
+  @apply text-sky-600 hover:text-sky-800 hover:underline;
 }
 
 thead {

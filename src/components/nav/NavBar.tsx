@@ -41,16 +41,10 @@ export default function NavBar() {
                 About
               </Link>
               <Link
-                href='/admin-list'
+                href='/admin'
                 className='py-4 px-3 text-red-500 hover:text-red-700'
               >
-                Admin List
-              </Link>
-              <Link
-                href='/add'
-                className='py-4 px-3 text-red-500 hover:text-red-700'
-              >
-                Add to Database
+                Admin Panel
               </Link>
             </div>
           </div>
