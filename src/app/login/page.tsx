@@ -107,7 +107,7 @@ export default function LoginPage() {
         </button>
       </div>
       <p className={`text-center mt-8 ${merriweather.className}`}>
-        Don't have an account?{' '}
+        Don&apos;t have an account?{' '}
         <Link href='/signup' className='link'>
           Create one!
         </Link>
