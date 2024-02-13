@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { merriweather } from '../fonts';
 import { User } from '@supabase/auth-helpers-nextjs';
+import Link from 'next/link';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -17,6 +18,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     async function getUser() {
+      console.log('this console.logs successfully logs this message');
       try {
         const {
           data: { user },
@@ -25,27 +27,12 @@ export default function LoginPage() {
         setUser(user);
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching user:', error);
         setLoading(false);
       }
     }
 
     getUser();
-  });
-
-  const handleSignUp = async () => {
-    const res = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        emailRedirectTo: `${location.origin}/auth/callback`,
-      },
-    });
-    setUser(res.data.user);
-    router.refresh();
-    setEmail('');
-    setPassword('');
-  };
+  }, []);
 
   const handleSignIn = async () => {
     const res = await supabase.auth.signInWithPassword({
@@ -76,27 +63,26 @@ export default function LoginPage() {
 
   if (user) {
     return (
-      <div className='h-screen flex flex-col justify-center items-center'>
-        <div className='bg-slate-100 p-8 rounded-lg shadow-md w-96 text-center'>
-          <h1
-            className={`mb-8 text-xl font-bold text-slate-900 ${merriweather.className}`}
-          >
-            You are logged in.
-          </h1>
-          <button
-            onClick={handleLogout}
-            className='uppercase w-full p-3 rounded-md bg-red-500 text-white hover:bg-red-600 focus:outline-none'
-          >
-            Logout
-          </button>
-        </div>
+      <div className='bg-slate-100 p-8 rounded-lg shadow-md w-96 text-center mx-auto mt-24'>
+        <h1
+          className={`mb-8 text-xl font-bold text-slate-900 ${merriweather.className}`}
+        >
+          You are logged in.
+        </h1>
+        <button
+          onClick={handleLogout}
+          className='uppercase w-full p-3 rounded-md bg-red-500 text-white hover:bg-red-600 focus:outline-none'
+        >
+          Logout
+        </button>
       </div>
     );
   }
 
   return (
-    <main className='h-screen flex items-center justify-center p-6'>
-      <div className='bg-slate-100 p-8 rounded-lg shadow-md w-96'>
+    <>
+      <h1 className='uppercase'>Login</h1>
+      <div className='bg-slate-100 p-8 mt-24 rounded-lg shadow-md w-96 mx-auto'>
         <input
           type='email'
           name='email'
@@ -119,13 +105,13 @@ export default function LoginPage() {
         >
           <span className='text-lg'>LOG IN</span>
         </button>
-        <button
-          onClick={handleSignUp}
-          className='w-full p-3 rounded-md bg-slate-600 text-white hover:bg-slate-500 focus:outline-none'
-        >
-          <span className='text-lg'>SIGN UP</span>
-        </button>
       </div>
-    </main>
+      <p className={`text-center mt-8 ${merriweather.className}`}>
+        Don't have an account?{' '}
+        <Link href='/signup' className='link'>
+          Create one!
+        </Link>
+      </p>
+    </>
   );
 }
