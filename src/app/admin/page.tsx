@@ -63,7 +63,7 @@ export default async function AddSelection() {
         <SiAdblock className='text-red-600 text-8xl text-center' />
         <h1 className='uppercase'>Admin Only Area</h1>
         <p className={merriweather.className}>
-          You aren't an admin, or you need to{' '}
+          You aren&apos;t an admin, or you need to{' '}
           <Link href='/login' className='link'>
             login
           </Link>{' '}
