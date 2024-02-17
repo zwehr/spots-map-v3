@@ -63,14 +63,25 @@ export default function VideosList() {
           videos.map((video) => (
             <div
               key={video.id}
-              className='bg-gray-200 rounded p-4 m-4 shadow-md'
+              className='bg-gray-200 rounded p-4 m-4 shadow-md flex relative'
             >
-              <h2 className='text-left'>
-                {video.title} ({video.release_year})
-              </h2>
-              <div className='flex'>
-                <p className='pl-4 capitalize'>{video.company}</p>
-                <a href={'/video/' + video.id} className='pr-4 ml-auto link'>
+              <div className='w-1/4'>
+                <img
+                  src={
+                    video.thumbnail_image_url ? video.thumbnail_image_url : ''
+                  }
+                />
+              </div>
+              <div className='w-3/4 pl-2'>
+                <h2 className='text-xl text-left'>{video.title}</h2>
+                <div className='flex'>
+                  <p>
+                    {video.company} - {video.release_year}
+                  </p>
+                </div>
+              </div>
+              <div className='absolute bottom-0 right-2'>
+                <a href={'skate-videos/' + video.id} className='link'>
                   More Info
                 </a>
               </div>

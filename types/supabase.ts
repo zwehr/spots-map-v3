@@ -48,6 +48,29 @@ export type Database = {
         }
         Relationships: []
       }
+      roles: {
+        Row: {
+          id: string
+          role: string
+        }
+        Insert: {
+          id: string
+          role: string
+        }
+        Update: {
+          id?: string
+          role?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "roles_id_fkey"
+            columns: ["id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       spot_likes: {
         Row: {
           created_at: string
@@ -168,44 +191,13 @@ export type Database = {
           }
         ]
       }
-      user_profiles: {
-        Row: {
-          created_at: string
-          id: string
-          interval: string | null
-          is_subscribed: boolean | null
-          nick_name: string | null
-        }
-        Insert: {
-          created_at?: string
-          id: string
-          interval?: string | null
-          is_subscribed?: boolean | null
-          nick_name?: string | null
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          interval?: string | null
-          is_subscribed?: boolean | null
-          nick_name?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "user_profiles_id_fkey"
-            columns: ["id"]
-            isOneToOne: true
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
       videos: {
         Row: {
           company: string | null
           created_at: string
           id: number
           release_year: number
+          thumbnail_image_url: string | null
           title: string
           youtube_embed_link: string | null
           youtube_link: string | null
@@ -215,6 +207,7 @@ export type Database = {
           created_at?: string
           id?: number
           release_year: number
+          thumbnail_image_url?: string | null
           title: string
           youtube_embed_link?: string | null
           youtube_link?: string | null
@@ -224,6 +217,7 @@ export type Database = {
           created_at?: string
           id?: number
           release_year?: number
+          thumbnail_image_url?: string | null
           title?: string
           youtube_embed_link?: string | null
           youtube_link?: string | null
