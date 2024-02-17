@@ -103,8 +103,7 @@ export default function AddSpotForm({ addNewSpot }: AddSpotFormProps) {
         const signedUrlResult = await getSignedURL(
           file.type,
           file.size,
-          checksum,
-          randName
+          checksum
         );
         if (signedUrlResult.failure !== undefined) {
           console.error('error getting signed url');
