@@ -26,18 +26,20 @@ export async function getSignedURL(fileType: string, size: number, checksum: str
 
   if (size > maxFileSize) {
     return {failure: 'File too large - 3 MB maximum'}
-  }  
+  }
+  
+  const keyName = generateFileName()
 
   const putObjCommand = new PutObjectCommand({
     Bucket: process.env.AWS_BUCKET_NAME!,
-    Key: generateFileName(),
+    Key: keyName,
     ContentType: fileType,
     ContentLength: size,
     ChecksumSHA256: checksum
   }) 
 
   const signedURL = await getSignedUrl(s3Client, putObjCommand)
-  return {success: {url: signedURL}}
+  return {success: {url: signedURL, fileName: keyName}}
 }
 
 export async function getVideoTitles(query: string) {
