@@ -27,8 +27,10 @@ tr {
   @apply even:bg-slate-100;
 }
 
+th,
 td {
   @apply p-1;
+  @apply text-center;
 }
 
 label {
