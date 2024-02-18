@@ -9,10 +9,6 @@ import SingleSpotMap from '@/components/spot/SingleSpotMap';
 // old mongodb helper import
 //import getSpotById from '@/lib/fetch/getSpotById';
 
-type VideoProps = {
-  youtubeLinks: Array<string>;
-};
-
 export default async function Spot({ params }: { params: { id: string } }) {
   // old mongodb code
   //const spotData: Promise<Spot | null | undefined> = getSpotById(params.id);

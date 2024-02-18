@@ -197,30 +197,30 @@ export type Database = {
           created_at: string
           id: number
           release_year: number
-          thumbnail_image_url: string | null
+          thumbnail_image_url: string
           title: string
-          youtube_embed_link: string | null
-          youtube_link: string | null
+          youtube_embed_link: string
+          youtube_link: string
         }
         Insert: {
           company?: string | null
           created_at?: string
           id?: number
           release_year: number
-          thumbnail_image_url?: string | null
+          thumbnail_image_url: string
           title: string
-          youtube_embed_link?: string | null
-          youtube_link?: string | null
+          youtube_embed_link: string
+          youtube_link: string
         }
         Update: {
           company?: string | null
           created_at?: string
           id?: number
           release_year?: number
-          thumbnail_image_url?: string | null
+          thumbnail_image_url?: string
           title?: string
-          youtube_embed_link?: string | null
-          youtube_link?: string | null
+          youtube_embed_link?: string
+          youtube_link?: string
         }
         Relationships: []
       }

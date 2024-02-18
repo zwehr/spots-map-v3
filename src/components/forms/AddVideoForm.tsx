@@ -182,6 +182,7 @@ export default function AddVideoForm() {
         name='media'
         accept='image/jpeg, image/png'
         onChange={handleChange}
+        required
       />
       {fileUrl && file && (
         <img src={fileUrl} alt='preview of selected file' className='w-24' />

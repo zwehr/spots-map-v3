@@ -51,6 +51,30 @@ ol {
   list-style-type: decimal;
 }
 
+.success {
+  @apply bg-green-400;
+  @apply hover:bg-green-500;
+}
+
+.caution {
+  @apply bg-yellow-400;
+  @apply hover:bg-yellow-500;
+}
+
+.delete {
+  @apply bg-red-400;
+  @apply hover:bg-red-500;
+}
+
+.neutral {
+  @apply bg-gray-400;
+  @apply hover:bg-gray-500;
+}
+
+.null {
+  @apply text-gray-400;
+}
+
 /* 
 Responsive iframe styling below from Ben Marhsall's tutorial:
 https://www.benmarshall.me/responsive-iframes/ 
