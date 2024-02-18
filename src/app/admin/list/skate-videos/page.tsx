@@ -1,5 +1,7 @@
 import supabase from '@/lib/utils/supabase';
 
+export const revalidate = 0;
+
 export default async function SkateVideosList() {
   const { data, error } = await supabase.from('videos').select();
 
