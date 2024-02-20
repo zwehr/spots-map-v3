@@ -7,17 +7,14 @@ import { deleteVideo } from './actions';
 type Video = Database['public']['Tables']['videos']['Row'];
 type AdminVideosTableProps = {
   videos: Video[] | undefined;
+  deleteVid: (id: number) => void;
 };
 
-export default function AdminVideoTable({ videos }: AdminVideosTableProps) {
+export default function AdminVideoTable({
+  videos,
+  deleteVid,
+}: AdminVideosTableProps) {
   const router = useRouter();
-
-  const handleDelete = async (id: number) => {
-    console.log(`inside handleDelete in AdminVideosTable, id is ${id}`);
-    const deleteVideoResponse = await deleteVideo(id);
-    console.log(deleteVideoResponse);
-    router.refresh();
-  };
 
   return (
     <>
@@ -68,7 +65,7 @@ export default function AdminVideoTable({ videos }: AdminVideosTableProps) {
                 <td>
                   <button
                     className='p-0.5 px-2 delete rounded uppercase'
-                    onClick={() => handleDelete(video.id)}
+                    onClick={() => deleteVid(video.id)}
                   >
                     Delete
                   </button>

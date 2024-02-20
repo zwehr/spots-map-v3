@@ -1,10 +1,21 @@
 import supabase from '@/lib/utils/supabase';
 import AdminVideoTable from '@/components/tables/AdminVideosTable';
+import { cookies } from 'next/headers';
+import {
+  User,
+  createServerComponentClient,
+} from '@supabase/auth-helpers-nextjs';
 
 // always getting fresh db data for admin
 export const revalidate = 0;
 
 export default async function SkateVideosList() {
+  const deleteVid = async (id: number) => {
+    'use server';
+    const supabase = createServerComponentClient({ cookies });
+    const { error } = await supabase.from('videos').delete().eq('id', id);
+  };
+
   const { data, error } = await supabase
     .from('videos')
     .select()
@@ -19,7 +30,7 @@ export default async function SkateVideosList() {
       <>
         <h1 className='uppercase'>Admin Skate Videos List</h1>
         <div className='max-w-6xl mx-auto'>
-          <AdminVideoTable videos={data} />
+          <AdminVideoTable videos={data} deleteVid={deleteVid} />
         </div>
       </>
     );
