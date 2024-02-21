@@ -4,7 +4,10 @@ import { useState } from 'react';
 import { getSignedURL } from './actions';
 import supabase from '@/lib/utils/supabase';
 import { BeatLoader } from 'react-spinners';
+
 import { oswald } from '@/app/fonts';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function AddVideoForm() {
   const [file, setFile] = useState<File | undefined>(undefined);
@@ -35,6 +38,16 @@ export default function AddVideoForm() {
       .map((b) => b.toString(16).padStart(2, '0'))
       .join('');
     return hashHex;
+  };
+
+  const clearInputs = () => {
+    setFile(undefined);
+    setFileUrl(undefined);
+    setTitle('');
+    setCompany(null);
+    setYear(2024);
+    setYoutubePageLink('');
+    setYoutubeEmbedLink('');
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -78,18 +91,9 @@ export default function AddVideoForm() {
     } finally {
       setUserSubmitted(false);
     }
-    // good place for toast message
-    console.log('made it to the end woohoo');
+    clearInputs();
     setUserSubmitted(false);
-  };
-
-  const clearInputs = () => {
-    setFile(undefined);
-    setTitle('');
-    setCompany(null);
-    setYear(2024);
-    setYoutubePageLink('');
-    setYoutubeEmbedLink('');
+    successMessage();
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -108,91 +112,122 @@ export default function AddVideoForm() {
     }
   };
 
+  const successMessage = () =>
+    toast.success(
+      <div>
+        Video added successfully, verify info in{' '}
+        <a href='/admin/list/skate-videos' className='link' target='_blank'>
+          admin list
+        </a>
+      </div>,
+      {
+        position: 'bottom-left',
+        hideProgressBar: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      }
+    );
+
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor='title' className='uppercase font-bold'>
-        Title:
-      </label>
-      <input
-        type='text'
-        name='title'
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        className='w-1/2'
-        required
-      />
+    <>
+      {' '}
+      <form onSubmit={handleSubmit}>
+        <label htmlFor='title' className='uppercase font-bold'>
+          Title:
+        </label>
+        <input
+          type='text'
+          name='title'
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          className='w-1/2'
+          required
+        />
 
-      <label htmlFor='company' className='uppercase font-bold'>
-        Company:
-      </label>
-      <input
-        type='text'
-        name='company'
-        value={company || ''}
-        onChange={(e) => setCompany(e.target.value)}
-        className='w-1/4 mb-0'
-      />
-      <p className='text-gray-600 italic mb-8'>
-        Optional - Leave blank if no company
-      </p>
+        <label htmlFor='company' className='uppercase font-bold'>
+          Company:
+        </label>
+        <input
+          type='text'
+          name='company'
+          value={company || ''}
+          onChange={(e) => setCompany(e.target.value)}
+          className='w-1/4 mb-0'
+        />
+        <p className='text-gray-600 italic mb-8'>
+          Optional - Leave blank if no company
+        </p>
 
-      <label htmlFor='year' className='uppercase font-bold'>
-        Year:
-      </label>
-      <select id='year' value={year} onChange={handleYearChange}>
-        {releaseYears.map((year) => (
-          <option key={year} value={year}>
-            {year}
-          </option>
-        ))}
-      </select>
+        <label htmlFor='year' className='uppercase font-bold'>
+          Year:
+        </label>
+        <select id='year' value={year} onChange={handleYearChange}>
+          {releaseYears.map((year) => (
+            <option key={year} value={year}>
+              {year}
+            </option>
+          ))}
+        </select>
 
-      <label htmlFor='youtubePageLink' className='uppercase font-bold'>
-        YouTube Link (Plain):
-      </label>
-      <input
-        type='text'
-        name='youtubePageLink'
-        value={youtubePageLink}
-        onChange={(e) => setYoutubePageLink(e.target.value)}
-        className='w-4/5'
-        required
-      />
+        <label htmlFor='youtubePageLink' className='uppercase font-bold'>
+          YouTube Link (Plain):
+        </label>
+        <input
+          type='text'
+          name='youtubePageLink'
+          value={youtubePageLink}
+          onChange={(e) => setYoutubePageLink(e.target.value)}
+          className='w-4/5'
+          required
+        />
 
-      <label htmlFor='' className='uppercase font-bold'>
-        YouTube Embed Link:
-      </label>
-      <input
-        type='text'
-        name=''
-        value={youtubeEmbedLink}
-        onChange={(e) => setYoutubeEmbedLink(e.target.value)}
-        className='w-4/5 mb-0'
-        required
-      />
-      <p className='mb-8 text-gray-600 italic'>
-        On YouTube video page, click <span className='font-bold'>Share</span>,
-        then <span className='font-bold'>Embed</span>, and then copy link from
-        src=&quot;<span className='font-bold'>...youtube.com/embed...</span>
-        &quot;.
-      </p>
+        <label htmlFor='' className='uppercase font-bold'>
+          YouTube Embed Link:
+        </label>
+        <input
+          type='text'
+          name=''
+          value={youtubeEmbedLink}
+          onChange={(e) => setYoutubeEmbedLink(e.target.value)}
+          className='w-4/5 mb-0'
+          required
+        />
+        <p className='mb-8 text-gray-600 italic'>
+          On YouTube video page, click <span className='font-bold'>Share</span>,
+          then <span className='font-bold'>Embed</span>, and then copy link from
+          src=&quot;<span className='font-bold'>...youtube.com/embed...</span>
+          &quot;.
+        </p>
 
-      <input
-        type='file'
-        name='media'
-        accept='image/jpeg, image/png'
-        onChange={handleChange}
-        required
+        <input
+          type='file'
+          name='media'
+          accept='image/jpeg, image/png'
+          onChange={handleChange}
+          required
+        />
+        {fileUrl && file && (
+          <img src={fileUrl} alt='preview of selected file' className='w-24' />
+        )}
+        <button
+          type='submit'
+          className={`uppercase mx-auto mt-5 mb-2 w-28 h-10 bg-green-400 rounded-lg hover:bg-green-500 hover:cursor-pointer shadow-md text-lg block ${oswald.className}`}
+        >
+          {userSubmitted ? <BeatLoader size={12} /> : 'Add Video'}
+        </button>
+      </form>
+      <ToastContainer
+        position='bottom-left'
+        hideProgressBar={false}
+        newestOnTop={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='light'
       />
-      {fileUrl && file && (
-        <img src={fileUrl} alt='preview of selected file' className='w-24' />
-      )}
-      <button
-        type='submit'
-        className={`uppercase mx-auto mt-5 mb-2 w-28 h-10 bg-green-400 rounded-lg hover:bg-green-500 hover:cursor-pointer shadow-md text-lg block ${oswald.className}`}
-      >
-        {userSubmitted ? <BeatLoader size={12} /> : 'Add Video'}
-      </button>
-    </form>
+    </>
   );
 }
