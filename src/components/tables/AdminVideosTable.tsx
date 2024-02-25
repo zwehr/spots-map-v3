@@ -3,6 +3,8 @@
 import { Database } from '../../../types/supabase';
 import { useRouter } from 'next/navigation';
 import { deleteVideo } from './actions';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 type Video = Database['public']['Tables']['videos']['Row'];
 type AdminVideosTableProps = {
@@ -15,6 +17,22 @@ export default function AdminVideoTable({
   deleteVid,
 }: AdminVideosTableProps) {
   const router = useRouter();
+
+  const handleDelete = (id: number) => {
+    deleteVid(id);
+    router.refresh();
+    successfulDeleteMessage();
+  };
+
+  const successfulDeleteMessage = () =>
+    toast.success('Video deleted successfully', {
+      position: 'bottom-left',
+      hideProgressBar: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
 
   return (
     <>
@@ -65,7 +83,7 @@ export default function AdminVideoTable({
                 <td>
                   <button
                     className='p-0.5 px-2 delete rounded uppercase'
-                    onClick={() => deleteVid(video.id)}
+                    onClick={() => handleDelete(video.id)}
                   >
                     Delete
                   </button>
@@ -74,6 +92,16 @@ export default function AdminVideoTable({
             ))}
         </tbody>
       </table>
+      <ToastContainer
+        position='bottom-left'
+        hideProgressBar={false}
+        newestOnTop={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='light'
+      />
     </>
   );
 }
