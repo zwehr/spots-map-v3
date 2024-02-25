@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { getSignedURL } from './actions';
+import { useRouter } from 'next/navigation';
 import supabase from '@/lib/utils/supabase';
 import { BeatLoader } from 'react-spinners';
 
@@ -10,6 +11,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function AddVideoForm() {
+  const router = useRouter();
+
   const [file, setFile] = useState<File | undefined>(undefined);
   const [fileUrl, setFileUrl] = useState<string | undefined>(undefined);
   const [title, setTitle] = useState<string>('');
@@ -93,6 +96,7 @@ export default function AddVideoForm() {
     }
     clearInputs();
     setUserSubmitted(false);
+    router.refresh();
     successMessage();
   };
 
