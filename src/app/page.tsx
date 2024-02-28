@@ -23,7 +23,7 @@ export default async function Home() {
           <div className='recent-spots ml-4 mr-2 my-4 rounded-lg'>
             {recentSpots &&
               recentSpots.map((spot) => (
-                <div className='mb-8'>
+                <div key={spot.id} className='mb-8'>
                   <h3>{spot.name}</h3>
                   <img
                     className='rounded-md'
