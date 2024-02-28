@@ -4,9 +4,12 @@ import supabase from '@/lib/utils/supabase';
 import { merriweather } from '@/app/fonts';
 
 export default async function ImageGrid() {
-  const { data: spots } = await supabase.from('spots').select().limit(45);
-  console.log(spots);
-  spots && console.log(spots.length);
+  const { data: tileSpots } = await supabase
+    .from('spots')
+    .select('id, image_thumbnail_link')
+    .order('id', { ascending: true })
+    .range(0, 44);
+  console.log(tileSpots);
 
   return (
     <div className='grid grid-cols-9 grid-rows-5 gap-1 p-4'>
@@ -25,16 +28,16 @@ export default async function ImageGrid() {
         </button>
       </div>
 
-      {spots &&
-        spots.map((spot) => (
+      {tileSpots &&
+        tileSpots.map((spot) => (
           <div
             key={spot.id}
             className='bg-slate-200 rounded-md hover:bg-slate-300'
           >
             <Link href={`/spot/${spot.id}`}>
-              <Image
+              <img
                 className='rounded-sm opacity-50 hover:opacity-100 transition-all duration-200'
-                src={spot.image_links[0]}
+                src={spot.image_thumbnail_link}
                 width={400}
                 height={300}
                 alt='Skatespot photo'
