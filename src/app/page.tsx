@@ -1,83 +1,42 @@
 import NumberCountUp from '@/components/animation/NumberCountUp';
 import ImageGrid from '@/components/homepage/ImageGrid';
-import Image from 'next/image';
+import supabase from '@/lib/utils/supabase';
 import Link from 'next/link';
 import { FaHeart, FaSearch, FaYoutube } from 'react-icons/fa';
 import { GiSkateboard } from 'react-icons/gi';
 import { merriweather } from './fonts';
 
-export default function Home() {
+export default async function Home() {
+  const { data: recentSpots } = await supabase
+    .from('spots')
+    .select('id, created_at, name, city, image_links')
+    .order('created_at', { ascending: false })
+    .limit(5);
+
   return (
     <div className='max-w-screen-xl mx-auto my-4 shadow-lg'>
       <h1 className='hidden'>Home</h1>
       <ImageGrid></ImageGrid>
       <div className='recent-and-descriptions mt-4 flex'>
-        <div className='recent-spots-container w-1/4 m-4 bg-slate-100 rounded-md shadow-md'>
+        <div className='recent-spots-container w-1/3 m-4 pt-4 bg-gray-100 rounded-md shadow-md'>
           <h2 className='uppercase text-center'>Recent Spots</h2>
           <div className='recent-spots ml-4 mr-2 my-4 rounded-lg'>
-            <div>
-              <div className='m-2'>
-                <h3>Spot Name in City Name</h3>
-                <Image
-                  className='rounded-md'
-                  src='/handrail.jpeg'
-                  width={500}
-                  height={500}
-                  alt='Skatespot photo'
-                />
-              </div>
-            </div>
-            <div>
-              <div className='m-2'>
-                <h3>Spot Name in City Name</h3>
-                <Image
-                  className='rounded-md'
-                  src='/handrail.jpeg'
-                  width={500}
-                  height={500}
-                  alt='Skatespot photo'
-                />
-              </div>
-            </div>
-            <div>
-              <div className='m-2'>
-                <h3>Spot Name in City Name</h3>
-                <Image
-                  className='rounded-md'
-                  src='/handrail.jpeg'
-                  width={500}
-                  height={500}
-                  alt='Skatespot photo'
-                />
-              </div>
-            </div>
-            <div>
-              <div className='m-2'>
-                <h3>Spot Name in City Name</h3>
-                <Image
-                  className='rounded-md'
-                  src='/handrail.jpeg'
-                  width={500}
-                  height={500}
-                  alt='Skatespot photo'
-                />
-              </div>
-            </div>
-            <div>
-              <div className='m-2'>
-                <h3>Spot Name in City Name</h3>
-                <Image
-                  className='rounded-md'
-                  src='/handrail.jpeg'
-                  width={500}
-                  height={500}
-                  alt='Skatespot photo'
-                />
-              </div>
-            </div>
+            {recentSpots &&
+              recentSpots.map((spot) => (
+                <div className='mb-8'>
+                  <h3>{spot.name}</h3>
+                  <img
+                    className='rounded-md'
+                    src={spot.image_links[0]}
+                    width={500}
+                    height={500}
+                    alt='Skatespot photo'
+                  />
+                </div>
+              ))}
           </div>
         </div>
-        <div className='descriptions-container w-3/4'>
+        <div className='descriptions-container w-2/3'>
           <div className='what-we-offer mr-4 my-4 p-1 rounded-lg shadow-md bg-gradient-to-b from-slate-100 to-blue-100'>
             <h2 className='uppercase text-center px-2 pt-4'>
               <NumberCountUp count={123} /> spots, and more...
