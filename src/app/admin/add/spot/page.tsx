@@ -18,9 +18,9 @@ export default function AddSpot() {
 
   return (
     <>
-      <h1>Add Spot</h1>
-      <div className='bg-slate-100 max-w-xl mx-auto mb-24 p-6 rounded-md shadow-lg'>
-        <AddSpotForm addNewSpot={addNewSpot} />
+      <h1 className='uppercase'>Add Spot</h1>
+      <div className='bg-gray-200 max-w-5xl mx-auto mb-24 p-6 rounded-md shadow-lg'>
+        <AddSpotForm />
       </div>
     </>
   );

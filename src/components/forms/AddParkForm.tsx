@@ -27,6 +27,7 @@ export default function AddParkForm() {
   const [featuredIn, setFeaturedIn] = useState(Array<OptionType>);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [userSubmitted, setUserSubmitted] = useState(false);
+
   const reverse = require('reverse-geocode');
 
   interface OptionType {
