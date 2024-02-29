@@ -8,6 +8,7 @@ import Select, { ActionMeta, MultiValue } from 'react-select';
 import AsyncSelect from 'react-select/async';
 import parkYearOptions from './parkYearOptions';
 import { getVideoTitles } from './actions';
+import Link from 'next/link';
 
 export default function AddParkForm() {
   const [name, setName] = useState('');
@@ -263,7 +264,10 @@ export default function AddParkForm() {
                 ))
               ) : (
                 <p className='italic text-gray-600'>
-                  If video is not in dropdown, add it to the video database.
+                  If video is not in dropdown,{' '}
+                  <Link className='link' href='/admin/add/video'>
+                    add it to the video database
+                  </Link>
                 </p>
               )}
             </ol>
