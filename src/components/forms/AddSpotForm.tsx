@@ -3,14 +3,30 @@
 import supabase from '@/lib/utils/supabase';
 import Link from 'next/link';
 import DeletableTags from '@/components/tags/DeletableTags';
-import { getVideoTitles } from './actions';
+import { getSignedURL, getVideoTitles } from './actions';
 import { useState, MouseEvent, FormEvent, ChangeEvent, useEffect } from 'react';
 import { BeatLoader } from 'react-spinners';
 import { oswald } from '@/app/fonts';
 import { MdDelete } from 'react-icons/md';
 import AsyncSelect from 'react-select/async';
 
-export default function AddSpotForm() {
+type AddSpotFormProps = {
+  addSpot: (
+    name: string,
+    lat: number,
+    lng: number,
+    city: string,
+    country: string,
+    type: string,
+    isPremium: boolean,
+    status: string,
+    tags: string[],
+    image_links: string[],
+    featured_in: number[]
+  ) => void;
+};
+
+export default function AddSpotForm({ addSpot }: AddSpotFormProps) {
   const [name, setName] = useState('');
   const [country, setCountry] = useState('');
   const [isOutsideUsCaAu, setIsOutsideUsCaAu] = useState(true);
@@ -32,6 +48,8 @@ export default function AddSpotForm() {
   const [userSubmitted, setUserSubmitted] = useState(false);
 
   const reverse = require('reverse-geocode');
+
+  const s3BaseUrl = 'https://skate-tourism.s3.us-east-2.amazonaws.com/';
 
   interface OptionType {
     label: string;
@@ -180,21 +198,57 @@ export default function AddSpotForm() {
     setUserSubmitted(true);
 
     try {
-      const { error } = await supabase.from('spots').insert({
-        name: name,
-        lat: lat,
-        lng: lng,
-        city: city,
-        country: country,
-        type: type,
-        is_premium: isPremium,
-        status: status,
-        tags: tags,
-        image_links: [],
-        featured_in: [],
-      });
+      if (file) {
+        const checksum = await computeSHA256(file);
+        const signedURLResult = await getSignedURL(
+          file.type,
+          file.size,
+          checksum
+        );
+
+        if (signedURLResult.failure !== undefined) {
+          throw new Error(signedURLResult.failure);
+        }
+
+        const fileName = signedURLResult.success.fileName;
+
+        const url = signedURLResult.success.url;
+        await fetch(url, {
+          method: 'PUT',
+          body: file,
+          headers: {
+            'Content-Type': file.type,
+          },
+        });
+
+        let featuredInIds: number[] = [];
+        // get ID's only from featuredIn objects
+        featuredIn.forEach((videoFeaturedIn) => {
+          featuredInIds.push(videoFeaturedIn.value);
+        });
+
+        const imageUrl = s3BaseUrl + fileName;
+
+        if (lat && lng) {
+          addSpot(
+            name,
+            lat,
+            lng,
+            city,
+            country,
+            type,
+            isPremium,
+            status,
+            tags,
+            [imageUrl],
+            featuredInIds
+          );
+        }
+      }
     } catch (error) {
       console.log(error);
+    } finally {
+      setUserSubmitted(false);
     }
   };
 
