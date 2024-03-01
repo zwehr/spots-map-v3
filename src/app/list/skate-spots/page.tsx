@@ -20,29 +20,12 @@ export default async function SpotsList() {
             <th>More</th>
           </tr>
         </thead>
-        <tbody>
-          {spots &&
-            spots.map((spot) => (
-              <tr key={spot._id}>
-                <td className='font-semibold'>{spot.name}</td>
-                <td>{spot.description}</td>
-                <td>{spot.type[0].toUpperCase() + spot.type.slice(1)}</td>
-                <td>{spot.city}</td>
-                <td>
-                  <LinkTags tags={spot.tags} />
-                </td>
-                <td>
-                  <Link
-                    href={`/spot/${spot._id}`}
-                    className='link font-semibold'
-                  >
-                    More Info
-                  </Link>
-                </td>
-              </tr>
-            ))}
-        </tbody>
+        <tbody></tbody>
       </table>
+      <p className='text-xl text-red-500 text-center mt-12'>
+        [Description removed from spots, other fields added... will be updated
+        later]
+      </p>
     </>
   );
 }
