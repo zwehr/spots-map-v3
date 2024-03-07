@@ -110,15 +110,17 @@ export type Database = {
       spots: {
         Row: {
           city: string | null
+          country: string | null
           created_at: string
-          description: string | null
           featured_in: number[] | null
           id: number
           image_links: string[] | null
+          image_thumbnail_link: string | null
           is_premium: boolean | null
           lat: number | null
           lng: number | null
           name: string | null
+          state_province: string | null
           status: string | null
           tags: string[] | null
           type: string | null
@@ -126,15 +128,17 @@ export type Database = {
         }
         Insert: {
           city?: string | null
+          country?: string | null
           created_at?: string
-          description?: string | null
           featured_in?: number[] | null
           id?: number
           image_links?: string[] | null
+          image_thumbnail_link?: string | null
           is_premium?: boolean | null
           lat?: number | null
           lng?: number | null
           name?: string | null
+          state_province?: string | null
           status?: string | null
           tags?: string[] | null
           type?: string | null
@@ -142,15 +146,17 @@ export type Database = {
         }
         Update: {
           city?: string | null
+          country?: string | null
           created_at?: string
-          description?: string | null
           featured_in?: number[] | null
           id?: number
           image_links?: string[] | null
+          image_thumbnail_link?: string | null
           is_premium?: boolean | null
           lat?: number | null
           lng?: number | null
           name?: string | null
+          state_province?: string | null
           status?: string | null
           tags?: string[] | null
           type?: string | null

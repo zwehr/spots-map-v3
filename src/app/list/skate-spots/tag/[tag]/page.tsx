@@ -1,5 +1,6 @@
 import LinkTags from '@/components/tags/LinkTags';
-import getSpotsByTag from '@/lib/fetch/getSpotsByTag';
+import supabase from '@/lib/utils/supabase';
+import { Database } from '../../../../../../types/supabase';
 import Link from 'next/link';
 import { RiCloseCircleFill } from 'react-icons/ri';
 
@@ -8,10 +9,20 @@ export default async function SpotsListByTag({
 }: {
   params: { tag: string };
 }) {
-  const spotsData: Promise<Spot[] | undefined> = getSpotsByTag(
-    decodeURI(params.tag)
-  );
-  const spots = await spotsData;
+  type Spot = Database['public']['Tables']['spots']['Row'];
+
+  const tag = decodeURI(params.tag);
+
+  const { data, error } = await supabase
+    .from('spots')
+    .select()
+    .contains('tags', [tag]);
+
+  if (error) {
+    console.log(error);
+  }
+
+  const spots = data as Spot[];
 
   return (
     <>
@@ -20,10 +31,7 @@ export default async function SpotsListByTag({
         <>
           <h2>
             {spots?.length} {spots.length > 1 ? 'spots' : 'spot'} found matching
-            tag:{' '}
-            <span className='underline decoration-emerald-400'>
-              {decodeURI(params.tag)}
-            </span>
+            tag: <span className='underline decoration-emerald-400'>{tag}</span>
             <Link href='/list/skate-spots'>
               <button className='align-middle ml-1' title='Clear tag'>
                 <RiCloseCircleFill className='text-red-500 hover:text-red-600' />
@@ -34,7 +42,6 @@ export default async function SpotsListByTag({
             <thead>
               <tr>
                 <th>Name</th>
-                <th>Description</th>
                 <th>Type</th>
                 <th>City</th>
                 <th>Tags</th>
@@ -44,17 +51,19 @@ export default async function SpotsListByTag({
             <tbody>
               {spots &&
                 spots.map((spot) => (
-                  <tr key={spot._id}>
+                  <tr key={spot.id}>
                     <td className='font-semibold'>{spot.name}</td>
-                    <td>{spot.description}</td>
-                    <td>{spot.type[0].toUpperCase() + spot.type.slice(1)}</td>
+                    <td>
+                      {spot.type &&
+                        spot.type[0].toUpperCase() + spot.type.slice(1)}
+                    </td>
                     <td>{spot.city}</td>
                     <td>
                       <LinkTags tags={spot.tags} />
                     </td>
                     <td>
                       <Link
-                        href={`/spot/${spot._id}`}
+                        href={`/spot/${spot.id}`}
                         className='link font-semibold'
                       >
                         More Info
@@ -66,7 +75,7 @@ export default async function SpotsListByTag({
           </table>
         </>
       ) : (
-        <h2>No spots matching tag: {params.tag}</h2>
+        <h2>No spots matching tag: {tag}</h2>
       )}
     </>
   );

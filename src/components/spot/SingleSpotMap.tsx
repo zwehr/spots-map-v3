@@ -20,7 +20,7 @@ export default function SingleSpotMap({ lat, lng }: SingleSpotMapProps) {
       <MapContainer
         center={[lat!, lng!]}
         zoom={ZOOM_LEVEL}
-        style={{ width: '100vh', height: '50vh' }}
+        style={{ width: '50vh', height: '50vh' }}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

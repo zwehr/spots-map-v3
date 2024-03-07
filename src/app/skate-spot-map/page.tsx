@@ -1,26 +1,32 @@
-import MapAndListContainer from '@/components/map/MapAndListContainer';
-import getSpotInBounds from '@/lib/fetch/getSpotInBounds';
+'use server';
+
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
+import { Database } from '../../../types/supabase';
+import MapMain from '@/components/map/MapMain';
+import SpotInfoPopup from '@/components/map/SpotInfoPopup';
 
 export default async function Map() {
-  const initialBounds = {
-    north: 40.75928942746383,
-    south: 40.660005201807856,
-    east: -73.87070912078184,
-    west: -74.09043568328184,
+  type Spot = Database['public']['Tables']['spots']['Row'];
+
+  const cookieStore = cookies;
+  const supabase = createServerComponentClient({
+    cookies: () => cookieStore(),
+  });
+
+  const { data } = await supabase.from('spots').select();
+  const spots = data as Spot[];
+
+  const mainContentStyle = {
+    height: 'calc(100vh - 60px)',
   };
 
-  const spotsData: Promise<Spot[] | undefined> = getSpotInBounds(
-    initialBounds.north,
-    initialBounds.south,
-    initialBounds.east,
-    initialBounds.west
-  );
-  const spots = await spotsData;
-
   return (
-    <div>
+    <div className='flex flex-col'>
       <h1 className='hidden'>Skate Spots Map</h1>
-      <MapAndListContainer spots={spots} />
+      <div style={mainContentStyle} className='h-screen relative'>
+        <MapMain spots={spots} />
+      </div>
     </div>
   );
 }
