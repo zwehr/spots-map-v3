@@ -1,36 +1,47 @@
 'use client';
 
+import { Database } from '../../../types/supabase';
 import LinkTags from '@/components/tags/LinkTags';
-import getAllSpots from '@/lib/fetch/getAllSpots';
+
+type Spot = Database['public']['Tables']['spots']['Row'];
 
 type AdminSpotsTableProps = {
-  spots: Spot[] | undefined;
+  spots: Spot[];
 };
 
-export default async function AdminSpotsTable(props: AdminSpotsTableProps) {
+export default function AdminSpotsTable({ spots }: AdminSpotsTableProps) {
   return (
     <>
-      {' '}
       <table className='max-w-7xl mx-auto text-sm'>
         <thead>
           <tr>
             <th>Name</th>
-            <th>Description</th>
             <th>Type</th>
             <th>City</th>
+            <th>State/Province</th>
+            <th>Country</th>
+            <th>Status</th>
             <th>$$$</th>
-            <th>Clips</th>
-            <th>Add Clip</th>
-            <th>Edit</th>
-            <th>Delete</th>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+          {spots.map((spot) => (
+            <tr key={spot.id}>
+              <td>{spot.name}</td>
+              <td>
+                <span className='capitalize'>{spot.type}</span>
+              </td>
+              <td>{spot.city}</td>
+              <td>{spot.state_province}</td>
+              <td>{spot.country}</td>
+              <td>
+                <span className='capitalize'>{spot.status}</span>
+              </td>
+              <td>{spot.is_premium ? 'Premium' : 'Free'}</td>
+            </tr>
+          ))}
+        </tbody>
       </table>
-      <p className='text-center mt-4 text-red-500 text-xl'>
-        [Removed Description from spots db table, so this needs to be updated to
-        work properly.]
-      </p>
     </>
   );
 }
