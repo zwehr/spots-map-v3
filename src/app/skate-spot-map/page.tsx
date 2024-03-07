@@ -3,8 +3,11 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import { Database } from '../../../types/supabase';
-import MapMain from '@/components/map/MapMain';
-import SpotInfoPopup from '@/components/map/SpotInfoPopup';
+import dynamic from 'next/dynamic';
+
+const MapMain = dynamic(() => import('../../components/map/MapMain'), {
+  ssr: false,
+});
 
 export default async function Map() {
   type Spot = Database['public']['Tables']['spots']['Row'];
