@@ -17,8 +17,8 @@ export default function SearchMapListContainer() {
   const [data, setData] = useState<Spot[] | null>(null);
   const [mapOptions, setMapOptions] = useState({
     zoomLevel: 2,
-    lat: 40,
-    lng: -80,
+    lat: 26.873453247341224,
+    lng: -38.29011797802427,
   });
   const [cityQuery, setCityQuery] = useState<string>('');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -73,7 +73,9 @@ export default function SearchMapListContainer() {
         </button>
       </div>
       <div className='flex'>
-        <MapFilterList spots={data} />
+        <div className='w-1/2 min-h-96 p-4 bg-gray-100 rounded-md m-4'>
+          <MapFilterList spots={data} />
+        </div>
         <div className='w-1/2 h-96 bg-gray-100 m-4 rounded'>
           <MapFilter spots={data} mapOptions={mapOptions} />
         </div>
