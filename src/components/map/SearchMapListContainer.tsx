@@ -1,11 +1,15 @@
 'use client';
 
-import MapFilter from '@/components/map/MapFilter';
 import MapFilterList from '@/components/list/MapFilterList';
 import { Database } from '../../../types/supabase';
 import { useState } from 'react';
 import { merriweather } from '@/app/fonts';
 import { findSpotsByCityAndTag } from './actions';
+import dynamic from 'next/dynamic';
+
+const MapFilter = dynamic(() => import('../../components/map/MapFilter'), {
+  ssr: false,
+});
 
 export default function SearchMapListContainer() {
   type Spot = Database['public']['Tables']['spots']['Row'];
