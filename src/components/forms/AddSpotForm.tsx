@@ -121,9 +121,7 @@ export default function AddSpotForm({ addSpot }: AddSpotFormProps) {
   };
 
   const loadOptions = async (inputValue: string) => {
-    console.log('in loadOptions');
     const videoTitles = await getVideoTitles(inputValue);
-    console.log(videoTitles);
 
     // Map response data to format expected by AsyncSelect
     const options = videoTitles!.map((item) => ({
