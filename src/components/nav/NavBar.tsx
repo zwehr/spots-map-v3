@@ -26,13 +26,19 @@ export default function NavBar() {
                 href='/skate-spot-map'
                 className='py-4 px-3 text-slate-700 hover:text-black'
               >
-                Map
+                View Map
               </Link>
               <Link
-                href='/list'
+                href='/search/skate-spots'
                 className='py-4 px-3 text-slate-700 hover:text-black'
               >
-                List
+                Search & Filter
+              </Link>
+              <Link
+                href='/list/skate-videos'
+                className='py-4 px-3 text-slate-700 hover:text-black'
+              >
+                Browse by Video
               </Link>
               <Link
                 href='/about'
@@ -79,13 +85,19 @@ export default function NavBar() {
           href='/skate-spot-map'
           className='block py-2 px-4 text-sm hover:bg-slate-200'
         >
-          Map
+          View Map
         </Link>
         <Link
-          href='/list'
+          href='/search/skate-spots'
           className='block py-2 px-4 text-sm hover:bg-slate-200'
         >
-          List
+          Search & Filter
+        </Link>
+        <Link
+          href='/list/skate-videos'
+          className='block py-2 px-4 text-sm hover:bg-slate-200'
+        >
+          Browse by Video
         </Link>
         <Link
           href='/about'
