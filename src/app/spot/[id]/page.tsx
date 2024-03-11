@@ -3,14 +3,8 @@ import SpotImage from '@/components/spot/SpotImage';
 import { Database } from '../../../../types/supabase';
 import supabase from '@/lib/utils/supabase';
 import SingleSpotMap from '@/components/spot/SingleSpotMap';
-// old mongodb helper import
-//import getSpotById from '@/lib/fetch/getSpotById';
 
 export default async function Spot({ params }: { params: { id: string } }) {
-  // old mongodb code
-  //const spotData: Promise<Spot | null | undefined> = getSpotById(params.id);
-  //const spot = await spotData;
-
   type Spot = Database['public']['Tables']['spots']['Row'];
 
   try {
@@ -25,7 +19,6 @@ export default async function Spot({ params }: { params: { id: string } }) {
     }
 
     const spot = (data as Spot[])[0];
-    console.log('SPOT IS', spot);
 
     if (!spot) {
       console.error('Spot not found');

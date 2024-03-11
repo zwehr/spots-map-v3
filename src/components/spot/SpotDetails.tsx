@@ -21,10 +21,7 @@ export default function SpotDetails({ spot }: { spot: Spot }) {
         <span className='font-bold'>Tags: </span>
       </p>
       <LinkTags tags={spot.tags} />
-      <p className='mb-4'>
-        <span className='font-bold'>Status:</span>{' '}
-        {spot.status && spot.status[0].toUpperCase() + spot.status.slice(1)}
-      </p>
+      <p className='text-red-500 text-xl'>[More Info Later]</p>
     </>
   );
 }
