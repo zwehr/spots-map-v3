@@ -4,6 +4,10 @@ import SpotInfoPopup from './SpotInfoPopup';
 import React, { useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+import iconMarker from 'leaflet/dist/images/marker-icon.png';
+import iconRetina from 'leaflet/dist/images/marker-icon-2x.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import { Database } from '../../../types/supabase';
 
 type Spot = Database['public']['Tables']['spots']['Row'];
@@ -21,6 +25,12 @@ export default function MapMain({ spots }: MapListProps) {
   const positionLat = 51.505;
   const positionLng = -0.09;
 
+  const icon = L.icon({
+    iconRetinaUrl: iconRetina.src,
+    iconUrl: iconMarker.src,
+    shadowUrl: iconShadow.src,
+  });
+
   return (
     <div className='h-full w-full bg-gray-100 relative'>
       <MapContainer
@@ -37,6 +47,7 @@ export default function MapMain({ spots }: MapListProps) {
             <Marker
               key={spot.id}
               position={[spot.lat!, spot.lng!]}
+              icon={icon}
               eventHandlers={{
                 click: () => {
                   console.log(spot.name);
