@@ -27,7 +27,10 @@ export default function SearchMapListContainer() {
   const handleSearch = async () => {
     if (cityQuery !== '' && searchQuery !== '') {
       setShowErroMsg(false);
-      const newSpots = await findSpotsByCityAndTag(cityQuery, searchQuery);
+      const newSpots = await findSpotsByCityAndTag(
+        cityQuery.trim().toLowerCase(),
+        searchQuery.trim().toLowerCase()
+      );
       console.log(newSpots);
       setData(newSpots);
     } else {

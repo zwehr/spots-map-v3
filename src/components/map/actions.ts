@@ -7,7 +7,7 @@ export async function findSpotsByCityAndTag(cityQuery: string, searchQuery: stri
   const {data, error} = await supabase
     .from('spots')
     .select()
-    .eq('city', cityQuery)
+    .ilike('city', cityQuery)
     .or(`type.eq.${searchQuery}, tags.cs.{${searchQuery}}`)
 
   if (error) {
