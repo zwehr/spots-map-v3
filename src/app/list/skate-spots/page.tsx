@@ -1,5 +1,3 @@
-import { useState } from 'react';
-import { merriweather } from '../../fonts';
 import SearchMapListContainer from '@/components/map/SearchMapListContainer';
 
 export default async function SpotsList() {
