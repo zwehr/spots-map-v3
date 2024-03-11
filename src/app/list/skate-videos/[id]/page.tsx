@@ -37,7 +37,7 @@ export default async function SkateVideo({
       <h1>{videoData.title}</h1>
       <div className='mt-12'>
         <div className='w-1/3 mx-auto'>
-          <img src={videoData.thumbnail_image_url} />
+          <img src={videoData.thumbnail_image_url} alt='video thumbnail' />
           <ul className='text-xl'>
             <li>Company: {videoData.company ? videoData.company : 'N/A'}</li>
             <li>Released: {videoData.release_year}</li>
@@ -58,6 +58,7 @@ export default async function SkateVideo({
             {spotsJoinData &&
               spotsJoinData.map((spot) => (
                 <FeaturedSpotItem
+                  key={spot.id}
                   id={spot.id}
                   name={spot.name}
                   city={spot.city}
