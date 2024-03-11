@@ -3,6 +3,7 @@ import { IoMdCloseCircle } from 'react-icons/io';
 import { BeatLoader } from 'react-spinners';
 import LinkTags from '../tags/LinkTags';
 import { useState } from 'react';
+import Link from 'next/link';
 
 type Spot = Database['public']['Tables']['spots']['Row'];
 
@@ -61,7 +62,15 @@ export default function SpotInfoPopup({
             </div>
             <LinkTags tags={spot.tags} />
             <p className='text-red-500 text-xl text-center mt-10'>
-              [More Info Later]
+              [More Later]
+            </p>
+            <p className='text-center'>
+              <Link
+                href={`/spot/${spot.id}`}
+                className='link text-xl text-center mt-10'
+              >
+                View All Spot Info
+              </Link>
             </p>
           </div>
         )}
