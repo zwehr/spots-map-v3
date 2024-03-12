@@ -4,7 +4,7 @@ import MapFilterList from '@/components/list/MapFilterList';
 import { Database } from '../../../types/supabase';
 import { useState } from 'react';
 import { merriweather } from '@/app/fonts';
-import { findSpotsByCityAndTag } from './actions';
+import { findSpotsByTag, findSpotsByCityAndTag } from './actions';
 import dynamic from 'next/dynamic';
 
 const MapFilter = dynamic(() => import('../../components/map/MapFilter'), {
@@ -25,12 +25,17 @@ export default function SearchMapListContainer() {
   const [showErrorMsg, setShowErroMsg] = useState<boolean>(false);
 
   const handleSearch = async () => {
-    if (cityQuery !== '' && searchQuery !== '') {
+    if (searchQuery !== '' && cityQuery !== '') {
       setShowErroMsg(false);
       const newSpots = await findSpotsByCityAndTag(
         cityQuery.trim().toLowerCase(),
         searchQuery.trim().toLowerCase()
       );
+      console.log(newSpots);
+      setData(newSpots);
+    } else if (searchQuery !== '') {
+      setShowErroMsg(false);
+      const newSpots = await findSpotsByTag(searchQuery.trim().toLowerCase());
       console.log(newSpots);
       setData(newSpots);
     } else {
@@ -43,17 +48,7 @@ export default function SearchMapListContainer() {
       <div className={'w-96 p-4 bg-gray-100 mx-auto text-center rounded'}>
         <div>
           <div className='flex my-2'>
-            <p className={merriweather.className}>City:</p>
-            <input
-              type='text'
-              className={`w-1/2 ml-2 px-1 ${merriweather.className}`}
-              placeholder='e.g. "Los Angeles"'
-              value={cityQuery}
-              onChange={(e) => setCityQuery(e.target.value)}
-            />
-          </div>
-          <div className='flex my-2'>
-            <p className={merriweather.className}>Search term:</p>
+            <p className={merriweather.className}>Search Term:</p>
             <input
               type='text'
               className={`w-1/2 ml-2 px-1 ${merriweather.className}`}
@@ -62,10 +57,20 @@ export default function SearchMapListContainer() {
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
+          <div className='flex my-2'>
+            <p className={merriweather.className}>City (optional):</p>
+            <input
+              type='text'
+              className={`w-1/2 ml-2 px-1 ${merriweather.className}`}
+              placeholder='e.g. "Los Angeles"'
+              value={cityQuery}
+              onChange={(e) => setCityQuery(e.target.value)}
+            />
+          </div>
         </div>
         <div className='h-4'>
           <p className={!showErrorMsg ? 'hidden' : 'text-red-500'}>
-            Enter city and search term
+            Enter a search term - city is optional.
           </p>
         </div>
         <button
