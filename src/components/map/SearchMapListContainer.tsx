@@ -2,16 +2,25 @@
 
 import MapFilterList from '@/components/list/MapFilterList';
 import { Database } from '../../../types/supabase';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { merriweather } from '@/app/fonts';
 import { findSpotsByTag, findSpotsByCityAndTag } from './actions';
+import { useSearchParams } from 'next/navigation';
 import dynamic from 'next/dynamic';
 
 const MapFilter = dynamic(() => import('../../components/map/MapFilter'), {
   ssr: false,
 });
 
-export default function SearchMapListContainer() {
+type SearchMapListContainerProps = {
+  paramQuery: string | null;
+  paramCity: string | null;
+};
+
+export default function SearchMapListContainer({
+  paramQuery,
+  paramCity,
+}: SearchMapListContainerProps) {
   type Spot = Database['public']['Tables']['spots']['Row'];
 
   const [data, setData] = useState<Spot[] | null>(null);
@@ -23,6 +32,25 @@ export default function SearchMapListContainer() {
   const [cityQuery, setCityQuery] = useState<string>('');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [showErrorMsg, setShowErroMsg] = useState<boolean>(false);
+
+  useEffect(() => {
+    const initialFetchData = async () => {
+      if (paramQuery && paramCity) {
+        const cityQueryClean = paramCity.trim().toLowerCase();
+        const searchQueryClean = paramQuery.trim().toLowerCase();
+        const newSpots = await findSpotsByCityAndTag(
+          cityQueryClean,
+          searchQueryClean
+        );
+        console.log(newSpots);
+        setData(newSpots);
+        setCityQuery(cityQueryClean);
+        setSearchQuery(searchQueryClean);
+      }
+    };
+
+    initialFetchData();
+  }, []);
 
   const handleSearch = async () => {
     if (searchQuery !== '' && cityQuery !== '') {
