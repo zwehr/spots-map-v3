@@ -26,7 +26,8 @@ export default function MapMain({ spots, mapOptions }: MapListProps) {
   const icon = L.icon({
     iconRetinaUrl: iconRetina.src,
     iconUrl: iconMarker.src,
-    shadowUrl: iconShadow.src,
+    iconSize: [20, 30],
+    iconAnchor: [10, 30],
   });
 
   return (
