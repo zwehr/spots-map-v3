@@ -38,9 +38,7 @@ export default async function Home() {
         </div>
         <div className='descriptions-container w-2/3'>
           <div className='what-we-offer mr-4 my-4 p-1 rounded-lg shadow-md bg-gradient-to-b from-slate-100 to-blue-100'>
-            <h2 className='uppercase text-center px-2 pt-4'>
-              <NumberCountUp count={123} /> spots, and more...
-            </h2>
+            <h2 className='uppercase text-center px-2 pt-4'>Features</h2>
             <ul className='ml-4'>
               <li className='p-2'>
                 <h3
