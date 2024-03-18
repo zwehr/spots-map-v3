@@ -7,8 +7,8 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import iconMarker from 'leaflet/dist/images/marker-icon.png';
 import iconRetina from 'leaflet/dist/images/marker-icon-2x.png';
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import { Database } from '../../../types/supabase';
+import { useSearchParams } from 'next/navigation';
 
 type Spot = Database['public']['Tables']['spots']['Row'];
 
@@ -21,9 +21,16 @@ export default function MapMain({ spots }: MapListProps) {
   const [showSpotInfoPopup, setShowSpotInfoPopup] = useState<boolean>(false);
   const [imageLoaded, setImageLoaded] = useState<boolean>(false);
 
-  const ZOOM_LEVEL = 6;
-  const positionLat = 51.505;
-  const positionLng = -0.09;
+  const searchParams = useSearchParams();
+  const latParam = searchParams.get('lat');
+  const lngParam = searchParams.get('lng');
+
+  console.log('searchParams lat and lng:', latParam, lngParam);
+
+  const positionLat = latParam ? parseFloat(latParam) : 35;
+  const positionLng = lngParam ? parseFloat(lngParam) : -30;
+
+  const zoomLevel = latParam && lngParam ? 11 : 3;
 
   const icon = L.icon({
     iconRetinaUrl: iconRetina.src,
@@ -36,7 +43,7 @@ export default function MapMain({ spots }: MapListProps) {
     <div className='h-full w-full bg-gray-100 relative'>
       <MapContainer
         center={[positionLat, positionLng]}
-        zoom={ZOOM_LEVEL}
+        zoom={zoomLevel}
         style={{ width: '100%', height: '100%', zIndex: '40' }}
       >
         <TileLayer
