@@ -16,9 +16,11 @@ export default function MapFilterListItemProps({
 }: MapFilterListItemProps) {
   return (
     <div
-      className={`${
-        selectedSpot === spot.id && 'shadow-md shadow-blue-200/80 bg-blue-200'
-      } bg-gray-200 my-2 px-2 py-1 rounded`}
+      className={` my-2 px-2 py-1 rounded ${
+        selectedSpot === spot.id
+          ? 'shadow-md shadow-blue-200/80 bg-blue-200'
+          : 'bg-gray-200'
+      } `}
     >
       <h3 className='uppercase mr-4 text-xl'>{spot.name}</h3>
       <div className='flex'>
