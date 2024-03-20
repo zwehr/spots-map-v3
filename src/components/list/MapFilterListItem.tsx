@@ -17,7 +17,7 @@ export default function MapFilterListItemProps({
   return (
     <div
       className={`${
-        selectedSpot === spot.id && 'bg-blue-200 shadow-md shadow-blue-200/80'
+        selectedSpot === spot.id && 'shadow-md shadow-blue-200/80 bg-blue-200'
       } bg-gray-200 my-2 px-2 py-1 rounded`}
     >
       <h3 className='uppercase mr-4 text-xl'>{spot.name}</h3>
