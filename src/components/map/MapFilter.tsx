@@ -6,13 +6,13 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import iconMarker from 'leaflet/dist/images/marker-icon.png';
 import iconRetina from 'leaflet/dist/images/marker-icon-2x.png';
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import { Database } from '../../../types/supabase';
 
 type Spot = Database['public']['Tables']['spots']['Row'];
 
 type MapListProps = {
   spots: Spot[] | null;
+  setSelectedSpot: (spotId: number) => void;
   mapOptions: {
     zoomLevel: number;
     lat: number;
@@ -20,9 +20,11 @@ type MapListProps = {
   };
 };
 
-export default function MapMain({ spots, mapOptions }: MapListProps) {
-  const [selectedSpot, setSelectedSpot] = useState<Spot | null>(null);
-
+export default function MapMain({
+  spots,
+  setSelectedSpot,
+  mapOptions,
+}: MapListProps) {
   const icon = L.icon({
     iconRetinaUrl: iconRetina.src,
     iconUrl: iconMarker.src,
@@ -50,7 +52,7 @@ export default function MapMain({ spots, mapOptions }: MapListProps) {
               eventHandlers={{
                 click: () => {
                   console.log(spot.name);
-                  setSelectedSpot(spot);
+                  setSelectedSpot(spot.id);
                 },
               }}
             ></Marker>

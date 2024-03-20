@@ -7,13 +7,19 @@ type Spot = Database['public']['Tables']['spots']['Row'];
 
 type MapFilterListItemProps = {
   spot: Spot;
+  selectedSpot: number | null;
 };
 
 export default function MapFilterListItemProps({
   spot,
+  selectedSpot,
 }: MapFilterListItemProps) {
   return (
-    <div className='bg-gray-200 my-2 px-2 py-1 rounded'>
+    <div
+      className={`${
+        selectedSpot === spot.id && 'bg-blue-200 shadow-md shadow-blue-200/80'
+      } bg-gray-200 my-2 px-2 py-1 rounded`}
+    >
       <h3 className='uppercase mr-4 text-xl'>{spot.name}</h3>
       <div className='flex'>
         <p className={merriweather.className}>
@@ -26,8 +32,10 @@ export default function MapFilterListItemProps({
               href={`/spot/${spot.id}`}
               target='_blank'
             >
-              More Info
-              <FaArrowAltCircleRight className='inline' />
+              <div className='items-center flex'>
+                <p>More Info</p>
+                <FaArrowAltCircleRight className='ml-0.5' />
+              </div>
             </Link>
           </p>
         </div>

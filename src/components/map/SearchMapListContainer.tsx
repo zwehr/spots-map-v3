@@ -32,6 +32,7 @@ export default function SearchMapListContainer({
   const [cityQuery, setCityQuery] = useState<string>('');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [showErrorMsg, setShowErroMsg] = useState<boolean>(false);
+  const [selectedSpot, setSelectedSpot] = useState<number | null>(null);
 
   useEffect(() => {
     if (spots) {
@@ -99,10 +100,18 @@ export default function SearchMapListContainer({
       </div>
       <div className='flex'>
         <div className='w-1/2 min-h-96 p-4 bg-gray-100 rounded-md m-4'>
-          <MapFilterList spots={data} />
+          <MapFilterList
+            spots={data}
+            selectedSpot={selectedSpot}
+            setSelectedSpot={setSelectedSpot}
+          />
         </div>
         <div className='w-1/2 h-96 bg-gray-100 m-4 rounded'>
-          <MapFilter spots={data} mapOptions={mapOptions} />
+          <MapFilter
+            spots={data}
+            mapOptions={mapOptions}
+            setSelectedSpot={setSelectedSpot}
+          />
         </div>
       </div>
     </>
