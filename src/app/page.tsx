@@ -23,16 +23,24 @@ export default async function Home() {
           <div className='recent-spots ml-4 mr-2 my-4 rounded-lg'>
             {recentSpots &&
               recentSpots.map((spot) => (
-                <div key={spot.id} className='mb-8'>
-                  <h3>{spot.name}</h3>
-                  <img
-                    className='rounded-md'
-                    src={spot.image_links[0]}
-                    width={500}
-                    height={500}
-                    alt='Skatespot photo'
-                  />
-                </div>
+                <Link href={`/spot/${spot.id}`} target='_blank'>
+                  <div
+                    key={spot.id}
+                    className='relative mb-8 hover:text-sky-800 hover:underline'
+                  >
+                    <h3 className={merriweather.className}>{spot.name}</h3>
+                    <img
+                      className='rounded-md mt-1'
+                      src={spot.image_links[0]}
+                      width={500}
+                      height={500}
+                      alt='Skatespot photo'
+                    />
+                    <div className='absolute bottom-4 right-4 bg-gray-200 rounded-sm py-1 px-2 text-black'>
+                      <p className='uppercase'>{spot.city}</p>
+                    </div>
+                  </div>
+                </Link>
               ))}
           </div>
         </div>
